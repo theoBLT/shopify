@@ -1,0 +1,92 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "1764967549a1192c39": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5bd2c24_7p8FJN": {
+          "type": "ai_gen_block_5bd2c24",
+          "settings": {
+            "image": "shopify://shop_images/CleanShot_2025-12-05_at_21.47.09_2x_d0981ae3-1577-476b-b589-004bc7c2b352.png",
+            "max_width_desktop": 25,
+            "max_width_mobile": 80,
+            "padding_top": 16,
+            "padding_bottom": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5bd2c24_7p8FJN"
+      ],
+      "settings": {}
+    },
+    "newsletter_6BmDjk": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_e7a7P3": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Be the First to Discover Our Treasures</strong>",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph_8Ep64c": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>We’re getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>"
+          }
+        },
+        "email_form_gUeckG": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_e7a7P3",
+        "paragraph_8Ep64c",
+        "email_form_gUeckG"
+      ],
+      "name": "Email",
+      "settings": {
+        "color_scheme": "scheme-2aa00177-5f2f-44f6-a237-0a82a23ad07a",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "name": "Footer",
+      "settings": {
+        "color_scheme": "scheme-ffdf6935-5326-4840-b63d-6c74d4cb1fcc",
+        "newsletter_enable": false,
+        "newsletter_heading": "Join the Waitlist",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "1764967549a1192c39",
+    "newsletter_6BmDjk",
+    "footer"
+  ]
+}

@@ -1,0 +1,534 @@
+{% doc %}
+  @prompt
+    An editorial section called "What We Curate" with 4 sections, with each one icon or image. Ideally on desktop all 4 are side by side, then if space doesn't allow only 2. 
+    
+    Text to introduce the section: 
+    "Each category is chosen with care, celebrating quality and the joy of discovery."
+    
+    Sections:
+    
+    [Section 1]
+    Apparel
+    Thoughtfully made pieces for everyday comfort and play.
+    [/Section 1]
+    
+    [Section 2]
+    Toys & Play Objects
+    Items that inspire imagination and slow, meaningful play.
+    [/Section 2]
+    
+    [Section 3]
+    Books 
+    Stories, prints, and keepsakes for growing minds.
+    [/Section 3]
+    
+    [Section 4]
+    Gifts
+    Meaningful treasures to mark childhood's little moments.
+    [/Section 4]
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-curate-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-curate-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-curate-intro-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.intro_spacing }}px;
+  }
+
+  .ai-curate-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+    font-weight: 600;
+  }
+
+  .ai-curate-intro-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.intro_text_size }}px;
+    color: {{ block.settings.intro_text_color }};
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .ai-curate-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+  }
+
+  .ai-curate-item-{{ ai_gen_id }} {
+    text-align: center;
+    padding: {{ block.settings.item_padding }}px;
+    background-color: {{ block.settings.item_background }};
+    border-radius: {{ block.settings.item_border_radius }}px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-curate-item-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+  }
+
+  .ai-curate-icon-wrapper-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto {{ block.settings.icon_spacing }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-curate-icon-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-curate-icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.icon_placeholder_bg }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-curate-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-curate-item-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_title_size }}px;
+    color: {{ block.settings.item_title_color }};
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+    font-weight: 600;
+  }
+
+  .ai-curate-item-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_description_size }}px;
+    color: {{ block.settings.item_description_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-curate-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ai-curate-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.85);
+    }
+
+    .ai-curate-intro-text-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.intro_text_size }}px * 0.9);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-curate-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 0 {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+
+    .ai-curate-icon-wrapper-{{ ai_gen_id }} {
+      width: calc({{ block.settings.icon_size }}px * 0.8);
+      height: calc({{ block.settings.icon_size }}px * 0.8);
+    }
+
+    .ai-curate-item-title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.item_title_size }}px * 0.9);
+    }
+
+    .ai-curate-item-description-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.item_description_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-curate-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-curate-container-{{ ai_gen_id }}">
+    {% if block.settings.section_heading != blank %}
+      <div class="ai-curate-intro-{{ ai_gen_id }}">
+        <h2 class="ai-curate-heading-{{ ai_gen_id }}">{{ block.settings.section_heading }}</h2>
+        {% if block.settings.intro_text != blank %}
+          <p class="ai-curate-intro-text-{{ ai_gen_id }}">{{ block.settings.intro_text }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-curate-grid-{{ ai_gen_id }}">
+      {% for i in (1..4) %}
+        {% liquid
+          assign title_key = 'item_' | append: i | append: '_title'
+          assign description_key = 'item_' | append: i | append: '_description'
+          assign image_key = 'item_' | append: i | append: '_image'
+          
+          assign item_title = block.settings[title_key]
+          assign item_description = block.settings[description_key]
+          assign item_image = block.settings[image_key]
+        %}
+
+        <div class="ai-curate-item-{{ ai_gen_id }}">
+          <div class="ai-curate-icon-wrapper-{{ ai_gen_id }}">
+            {% if item_image %}
+              <img
+                src="{{ item_image | image_url: width: 200 }}"
+                alt="{{ item_title | escape }}"
+                loading="lazy"
+                width="200"
+                height="200"
+              >
+            {% else %}
+              <div class="ai-curate-icon-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if item_title != blank %}
+            <h3 class="ai-curate-item-title-{{ ai_gen_id }}">{{ item_title }}</h3>
+          {% endif %}
+
+          {% if item_description != blank %}
+            <p class="ai-curate-item-description-{{ ai_gen_id }}">{{ item_description }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "What We Curate",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "What We Curate"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_text",
+      "label": "Introduction text",
+      "default": "Each category is chosen with care, celebrating quality and the joy of discovery."
+    },
+    {
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "item_1_image",
+      "label": "Icon or image"
+    },
+    {
+      "type": "text",
+      "id": "item_1_title",
+      "label": "Title",
+      "default": "Apparel"
+    },
+    {
+      "type": "textarea",
+      "id": "item_1_description",
+      "label": "Description",
+      "default": "Thoughtfully made pieces for everyday comfort and play."
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "item_2_image",
+      "label": "Icon or image"
+    },
+    {
+      "type": "text",
+      "id": "item_2_title",
+      "label": "Title",
+      "default": "Toys & Play Objects"
+    },
+    {
+      "type": "textarea",
+      "id": "item_2_description",
+      "label": "Description",
+      "default": "Items that inspire imagination and slow, meaningful play."
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "item_3_image",
+      "label": "Icon or image"
+    },
+    {
+      "type": "text",
+      "id": "item_3_title",
+      "label": "Title",
+      "default": "Books"
+    },
+    {
+      "type": "textarea",
+      "id": "item_3_description",
+      "label": "Description",
+      "default": "Stories, prints, and keepsakes for growing minds."
+    },
+    {
+      "type": "header",
+      "content": "Item 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "item_4_image",
+      "label": "Icon or image"
+    },
+    {
+      "type": "text",
+      "id": "item_4_title",
+      "label": "Title",
+      "default": "Gifts"
+    },
+    {
+      "type": "textarea",
+      "id": "item_4_description",
+      "label": "Description",
+      "default": "Meaningful treasures to mark childhood's little moments."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Space between items",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading spacing",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "intro_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Introduction text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "intro_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Introduction spacing",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "item_title_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Item title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Title spacing",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "item_description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Item description size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Item style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Item padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Item border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "intro_text_color",
+      "label": "Introduction text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "item_background",
+      "label": "Item background",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "item_title_color",
+      "label": "Item title",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "item_description_color",
+      "label": "Item description",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "icon_placeholder_bg",
+      "label": "Icon placeholder background",
+      "default": "#e0e0e0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "What We Curate"
+    }
+  ]
+}
+{% endschema %}

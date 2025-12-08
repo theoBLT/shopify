@@ -1,0 +1,190 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Curated treasures for little ones",
+            "heading_size": "hxl"
+          }
+        },
+        "text_p9XEKR": {
+          "type": "text",
+          "settings": {
+            "text": "For parents who care about quality, creativity and design. Launching Spring 2026 in Schöneberg, Berlin.",
+            "text_style": "subtitle"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Get notified of our launch",
+            "button_link_1": "https://www.kindertresor.com#waitlist",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text_p9XEKR",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/bear.png",
+        "image_overlay_opacity": 10,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-ffdf6935-5326-4840-b63d-6c74d4cb1fcc",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_wCXVB8": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_afEGJn": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Our Story</strong>",
+            "heading_size": "h0"
+          }
+        },
+        "text_fgWFPW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Kinder Trésor, we believe in the magic of childhood.</p><p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.<br/><br/>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in Spring 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>"
+          }
+        },
+        "button_kedmYp": {
+          "type": "button",
+          "settings": {
+            "button_label": "Let’s Collaborate",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_afEGJn",
+        "text_fgWFPW",
+        "button_kedmYp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-572a1b82-91b3-4db0-93bb-5223bab63541",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "17649639216ee3a391": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_69d79eb_3x3CCt": {
+          "type": "ai_gen_block_69d79eb",
+          "settings": {
+            "section_heading": "What We Curate",
+            "intro_text": "Each category is chosen with care, celebrating quality and the joy of discovery.",
+            "item_1_image": "shopify://shop_images/Frame_7.png",
+            "item_1_title": "Apparel",
+            "item_1_description": "Thoughtfully made pieces for everyday comfort and play.",
+            "item_2_image": "shopify://shop_images/Frame_6.png",
+            "item_2_title": "Toys",
+            "item_2_description": "Items that inspire imagination and slow, meaningful play.",
+            "item_3_image": "shopify://shop_images/Frame_8.png",
+            "item_3_title": "Books",
+            "item_3_description": "Stories, prints, and keepsakes for growing minds.",
+            "item_4_image": "shopify://shop_images/Frame_2.png",
+            "item_4_title": "Gifts",
+            "item_4_description": "Meaningful treasures to mark childhood's little moments.",
+            "container_width": 1200,
+            "grid_gap": 30,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "heading_size": 48,
+            "heading_spacing": 22,
+            "intro_text_size": 20,
+            "intro_spacing": 35,
+            "item_title_size": 28,
+            "title_spacing": 12,
+            "item_description_size": 16,
+            "icon_size": 80,
+            "icon_spacing": 20,
+            "item_padding": 20,
+            "item_border_radius": 8,
+            "background_color": "#ffffff",
+            "heading_color": "#121212",
+            "intro_text_color": "#121212",
+            "item_background": "#ffffff",
+            "item_title_color": "#121212",
+            "item_description_color": "#121212",
+            "icon_placeholder_bg": "#e0e0e0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_69d79eb_3x3CCt"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection",
+    "rich_text_wCXVB8",
+    "17649639216ee3a391"
+  ]
+}
