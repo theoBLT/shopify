@@ -86,49 +86,6 @@
         "padding_bottom": 36
       }
     },
-    "rich_text_wCXVB8": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_afEGJn": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>Our Story</strong>",
-            "heading_size": "h0"
-          }
-        },
-        "text_fgWFPW": {
-          "type": "text",
-          "settings": {
-            "text": "<p>At Kinder Trésor, we believe in the magic of childhood.</p><p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.<br/><br/>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in Spring 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>"
-          }
-        },
-        "button_kedmYp": {
-          "type": "button",
-          "settings": {
-            "button_label": "Let’s Collaborate",
-            "button_link": "shopify://pages/contact",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_afEGJn",
-        "text_fgWFPW",
-        "button_kedmYp"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-572a1b82-91b3-4db0-93bb-5223bab63541",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "17649639216ee3a391": {
       "type": "_blocks",
       "blocks": {
@@ -179,12 +136,55 @@
         "ai_gen_block_69d79eb_3x3CCt"
       ],
       "settings": {}
+    },
+    "rich_text_wCXVB8": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_afEGJn": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Our Story</strong>",
+            "heading_size": "h0"
+          }
+        },
+        "text_fgWFPW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Kinder Trésor, we believe in the magic of childhood.</p><p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.<br/><br/>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in Spring 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>"
+          }
+        },
+        "button_kedmYp": {
+          "type": "button",
+          "settings": {
+            "button_label": "Let’s Collaborate",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_afEGJn",
+        "text_fgWFPW",
+        "button_kedmYp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-572a1b82-91b3-4db0-93bb-5223bab63541",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "rich_text_wCXVB8",
-    "17649639216ee3a391"
+    "17649639216ee3a391",
+    "rich_text_wCXVB8"
   ]
 }
