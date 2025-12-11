@@ -534,5 +534,10 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "blocks": {
+    "centered_image": {
+      "add_image": "Add an image to get started"
+    }
   }
 }

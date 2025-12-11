@@ -17,6 +17,19 @@
   --font-body-weight: 400;        /* Regular */
   --font-body-weight-bold: 700;   /* Bold */
   --font-heading-weight: 600;     /* SemiBold for headings */
+
+  /* Kinder Tresor Brand Colors */
+  /* Primary colors - use for dominant areas, logos, major CTAs */
+  --color-brand-turquoise: #80cedc;
+  --color-brand-pink: #eaa4c8;
+  --color-brand-green: #77ae79;
+
+  /* Secondary colors - use sparingly for highlights and variety */
+  --color-brand-yellow: #f5d748;
+  --color-brand-coral: #ec6563;
+  --color-brand-orange: #ef9050;
+  --color-brand-purple: #767ab4;
+  --color-brand-cream: #f1eecf;
 }
 
 .product-card-wrapper .card,
