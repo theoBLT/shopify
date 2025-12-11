@@ -79,6 +79,61 @@ grep -r "search-term" ./sections/
 grep -r "search-term" ./snippets/
 ```
 
+### Visual Testing with dev-browser
+
+**dev-browser** is a browser automation plugin that lets Claude view and test the website during development.
+
+**Prerequisites:**
+- Bun runtime installed: `~/.bun/bin/bun --version`
+- dev-browser plugin installed via Claude Code
+
+**Starting the server:**
+```bash
+# Navigate to plugin directory
+cd ~/.claude/plugins/cache/dev-browser-marketplace/dev-browser/*/skills/dev-browser
+
+# Start server (first run downloads Chromium ~160MB)
+./server.sh &
+
+# Wait for "Ready" message
+```
+
+**Quick test script:**
+```bash
+cd ~/.claude/plugins/cache/dev-browser-marketplace/dev-browser/*/skills/dev-browser
+
+# Take screenshot of homepage
+bun x tsx <<'EOF'
+import { connect, waitForPageLoad } from "@/client.js";
+
+const client = await connect("http://localhost:9222");
+const page = await client.page("main");
+
+await page.goto("http://localhost:9292");
+await waitForPageLoad(page);
+await page.screenshot({ path: "tmp/screenshot.png" });
+
+console.log("Screenshot saved!");
+await client.disconnect();
+EOF
+
+# View screenshot
+open tmp/screenshot.png
+```
+
+**When Claude uses dev-browser:**
+- Verify visual design and layout
+- Test responsive design (mobile/tablet/desktop)
+- Check brand color implementation
+- Verify accessibility (contrast, focus states)
+- Test interactive elements (navigation, cart, forms)
+- Debug CSS/layout issues
+
+**Key files:**
+- Screenshots: `tmp/*.png`
+- Scripts: `tmp/*.ts`
+- Server: runs on port 9222
+
 ### Key CSS Variables
 ```css
 /* Dawn Colors */
