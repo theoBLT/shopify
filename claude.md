@@ -859,6 +859,52 @@ shopify theme push --development
 
 ## Agent Instructions
 
+### CRITICAL: ALWAYS Verify Changes Work
+
+**⚠️ MANDATORY AFTER EVERY CHANGE ⚠️**
+
+Before committing or pushing ANY changes, you MUST:
+
+1. **Check the live site loads without errors:**
+   ```bash
+   curl -I http://localhost:9292
+   # Should return HTTP/1.1 200 OK
+   # If you see HTML error page, there's a validation error
+   ```
+
+2. **Check dev server logs for errors:**
+   ```bash
+   # Look for recent errors in the dev server output
+   tail -50 /tmp/claude/tasks/[dev-server-task-id].output | grep -i error
+   ```
+
+3. **If using dev-browser, take a screenshot:**
+   ```bash
+   # Verify the page actually renders
+   cd ~/.claude/plugins/cache/dev-browser-marketplace/dev-browser/*/skills/dev-browser
+   bun x tsx <<'EOF'
+   import { connect } from "@/client.js";
+   const client = await connect("http://localhost:9222");
+   const page = await client.page("verify");
+   await page.goto("http://localhost:9292", { timeout: 10000, waitUntil: 'domcontentloaded' });
+   await page.waitForTimeout(2000);
+   await page.screenshot({ path: "tmp/verify.png" });
+   console.log("Screenshot saved - check for errors");
+   await client.disconnect();
+   EOF
+   ```
+
+4. **Common Shopify Validation Errors to Check:**
+   - ❌ Section settings values outside min/max range
+   - ❌ Section settings not in correct step increments
+   - ❌ Section IDs in "order" array don't match section keys
+   - ❌ Padding values > 100 (max is 100)
+   - ❌ Invalid color_scheme references
+
+**NEVER commit without verifying the site loads successfully first.**
+
+---
+
 ### Pre-flight Checklist (EVERY task)
 
 ```bash
