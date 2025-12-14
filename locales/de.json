@@ -575,12 +575,12 @@
       }
     },
     "our_story": {
-      "heading": "<strong>Unsere Geschichte</strong>",
+      "heading": "Unsere Geschichte",
       "body": "<p>Bei Kinder Trésor glauben wir an die Magie der Kindheit.</p><p>Wir sind ein kuratierter Kids Concept Store mit Fokus auf zeitlose Ästhetik, achtsames Design und bewusste Stücke für die Kleinsten und ihre Welten.<br/><br/>Verwurzelt in slow values und inspiriert von Design arbeiten wir mit durchdachten Kreativen und unabhängigen Marken zusammen, die Qualität, Kreativität und Storytelling schätzen.</p><p>Kinder Trésor wird im Frühjahr 2026 in Berlin eröffnen. Aktuell kuratieren wir für euch eine Sammlung durchdachter Schätze und laden inspirierende Markenpartner ein, sich uns anzuschließen.</p>",
       "button": "Lass uns zusammenarbeiten"
     },
     "newsletter": {
-      "heading": "<strong>Entdecke unsere Schätze als Erste*r</strong>",
+      "heading": "Entdecke unsere Schätze als Erste*r",
       "text": "<p>Wir bereiten etwas Besonderes aus Berlin vor. Trage dich in unsere Early-Access-Liste ein für Updates und kuratierte Überraschungen.</p>"
     }
   }

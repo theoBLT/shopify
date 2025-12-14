@@ -558,14 +558,48 @@ When adding ANY custom text to the theme (homepage sections, announcements, news
    - `/locales/en.default.json` - English original
    - `/locales/de.json` - German translation
 
-2. **Use the translation filter in configs:**
+2. **Use the t: prefix syntax in JSON config files:**
    ```json
    {
-     "heading": "{{ 'custom_content.section.key' | t }}"
+     "heading": "t:custom_content.section.key"
    }
    ```
+   **IMPORTANT:** Use `t:` prefix (NOT Liquid syntax `{{ 'key' | t }}`)
 
-3. **Naming convention:**
+3. **NEVER include HTML formatting tags in translation strings:**
+
+   ❌ **WRONG:**
+   ```json
+   "heading": "<strong>Our Story</strong>"
+   ```
+
+   ✅ **CORRECT:**
+   ```json
+   "heading": "Our Story"
+   ```
+
+   **Why:** HTML tags in translation strings will display as literal text (`<strong>Our Story</strong>`) instead of being rendered.
+
+   **Solution:** Add HTML formatting in the Liquid template, not in translation strings:
+   ```liquid
+   <h2><strong>{{ heading }}</strong></h2>
+   ```
+
+4. **How the translation system works:**
+   - JSON config files store values with `t:` prefix: `"heading": "t:custom_content.hero.heading"`
+   - Section Liquid files detect the `t:` prefix and apply translation filter:
+     ```liquid
+     {%- liquid
+       assign heading = block.settings.heading
+       if heading contains 't:'
+         assign translation_key = heading | remove: 't:'
+         assign heading = translation_key | t
+       endif
+     -%}
+     ```
+   - Translation filter fetches the value from `locales/en.default.json` or `locales/de.json` based on selected language
+
+5. **Naming convention:**
    ```
    custom_content.{section_name}.{element}
 
@@ -575,26 +609,29 @@ When adding ANY custom text to the theme (homepage sections, announcements, news
    - custom_content.what_we_curate.apparel.title
    ```
 
-4. **Translation tone:**
+6. **Translation tone:**
    - Preserve playful-yet-sophisticated brand voice
    - Use gender-neutral language (e.g., "Erste*r" instead of "Erster/Erste")
    - Maintain warm, inviting, quality-focused tone
    - Keep Berlin-specific references intact
 
-5. **Test before committing:**
+7. **Test before committing:**
    - Verify language selector works in header
    - Check both EN and DE versions render correctly
-   - Ensure HTML formatting (e.g., `<strong>`, `<p>`) is preserved in both languages
+   - Ensure NO HTML tags appear as literal text in the browser
 
 **Files to update when adding custom text:**
-- `locales/en.default.json` (add English key)
-- `locales/de.json` (add German translation)
-- Template/section JSON file (use `{{ 'key' | t }}` filter)
+- `locales/en.default.json` (add English key - plain text only)
+- `locales/de.json` (add German translation - plain text only)
+- Template/section JSON file (use `t:key` syntax)
+- Section Liquid file (add translation detection logic if not present, add HTML formatting)
 
 **Never:**
 - ❌ Hardcode text directly in JSON configs without translation keys
 - ❌ Skip German translations for customer-facing content
 - ❌ Use auto-translation tools - manually craft quality German copy
+- ❌ Include HTML tags (`<strong>`, `<em>`, `<p>`, etc.) in translation strings
+- ❌ Use Liquid syntax in JSON files (use `t:` prefix instead)
 
 ---
 
