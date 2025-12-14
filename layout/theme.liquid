@@ -8,6 +8,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
 
     {{ 'national-park.css' | asset_url | stylesheet_tag }}
+    {{ 'nunito.css' | asset_url | stylesheet_tag }}
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -110,6 +111,10 @@
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
+
+        /* Custom font overrides - Nunito for body, National Park for headings */
+        --font-body-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-heading-family: 'National Park', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -292,6 +297,8 @@
         onload="this.media='all'"
       >
     {%- endif -%}
+
+    {{ 'brand-colors.css' | asset_url | stylesheet_tag }}
 
     <script>
       if (Shopify.designMode) {

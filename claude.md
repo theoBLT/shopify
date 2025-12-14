@@ -247,27 +247,41 @@ Used by ALL pages?
 
 ### 1. Typography
 
-**Font:** National Park (Custom)
-- Files: `./assets/NationalPark-*.woff`
+**Display Font: National Park (Headings)**
+- Files: `./assets/NationalPark-*.woff2`
 - Weights: Regular (400), Medium (500), Semibold (600), Bold (700)
-- Fallback: `assistant_n4` → system fonts
+- Usage: All headings, CTAs, emphasized UI text
+- Variable: `--font-heading-family`
+
+**Body Font: Nunito (Body Text)**
+- Files: `./assets/Nunito-*.woff2`
+- Weights: Regular (400), Semibold (600), Bold (700)
+- Usage: Body copy, paragraphs, general text
+- Variable: `--font-body-family`
 
 **Weight Usage Guidelines:**
-- **Regular (400):** Body copy, general text
-- **Medium (500):** Subheadings, emphasized text
-- **Semibold (600):** Headlines, CTAs, important UI elements
+- **Regular (400):** Body copy, paragraph text
+- **Semibold (600):** Headings, subheadings, emphasized text
 - **Bold (700):** Strong emphasis, major headings
 
 ```css
+/* Headings use National Park */
 .heading {
   font-family: var(--font-heading-family);
-  font-weight: 600; /* Always declare explicitly */
+  font-weight: 600; /* SemiBold for most headings */
+}
+
+/* Body text uses Nunito */
+body, p {
+  font-family: var(--font-body-family);
+  font-weight: 400; /* Regular for body */
 }
 ```
 
 **Best Practices:**
-- Always declare font-weight explicitly when using National Park
-- Limit to these 4 weights for consistency
+- Always declare font-weight explicitly
+- National Park for headings creates bold, confident brand presence
+- Nunito for body provides excellent readability
 - Maintain heading hierarchy (h1 → h6)
 - Body text minimum 16px base
 
@@ -309,9 +323,20 @@ In addition to Dawn's configurable color schemes, use these brand-specific color
 --color-brand-cream: #f1eecf;      /* Soft backgrounds */
 ```
 
+**Utility Colors** (functional colors for backgrounds and text):
+```css
+--cream-light: #f7f5e8;            /* Light neutral backgrounds */
+--charcoal: #2d3436;               /* Dark text and backgrounds */
+--text-dark: #2d3436;              /* Primary dark text */
+--text-light: #ffffff;             /* Primary light text */
+--text-muted-dark: rgba(45, 52, 54, 0.7);    /* Muted dark text */
+--text-muted-light: rgba(255, 255, 255, 0.7); /* Muted light text */
+```
+
 **Color Usage:**
 - Primary colors should appear more frequently than secondary
 - Secondary colors add visual interest but shouldn't dominate
+- Utility colors provide accessible, functional alternatives
 - Always use exact hex values for brand consistency
 - These supplement Dawn's `--color-base-*` system
 
@@ -349,7 +374,53 @@ In addition to Dawn's configurable color schemes, use these brand-specific color
 
 ---
 
-### 4. Accessibility Requirements
+### 4. Button Treatment
+
+**Pill-Shaped Design:**
+All buttons use rounded pill styling for a modern, friendly aesthetic.
+
+```css
+/* Global button settings (configured in settings_data.json) */
+buttons_radius: 50          /* Full pill shape */
+buttons_border_thickness: 3 /* Strong, visible borders */
+buttons_border_opacity: 100 /* Fully opaque borders */
+```
+
+**Button Transitions:**
+Buttons have smooth hover and active states with subtle lift effect.
+
+```css
+.button {
+  transition: box-shadow var(--duration-short) ease,
+              background-color var(--duration-short) ease,
+              color var(--duration-short) ease,
+              transform 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px); /* Lift on hover */
+}
+
+.button:active {
+  transform: translateY(0); /* Return to normal on click */
+}
+```
+
+**Button Best Practices:**
+- All CTAs use pill shape (50px border-radius)
+- 3px borders provide visual weight and clarity
+- Hover states include subtle upward movement
+- Transitions create polished, premium feel
+- Button colors inherit from section color schemes
+
+**Button Variants:**
+- **Primary:** Filled background, contrasting text
+- **Secondary:** Outlined with transparent background
+- **Tertiary:** Text-only with minimal styling
+
+---
+
+### 5. Accessibility Requirements
 
 **Checklist before committing:**
 - [ ] Contrast ≥ 4.5:1 for text

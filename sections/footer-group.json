@@ -59,7 +59,7 @@
       ],
       "name": "Email",
       "settings": {
-        "color_scheme": "scheme-2aa00177-5f2f-44f6-a237-0a82a23ad07a",
+        "color_scheme": "scheme-brand-turquoise",
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
@@ -69,7 +69,7 @@
       "type": "footer",
       "name": "Footer",
       "settings": {
-        "color_scheme": "scheme-ffdf6935-5326-4840-b63d-6c74d4cb1fcc",
+        "color_scheme": "scheme-brand-charcoal",
         "newsletter_enable": false,
         "newsletter_heading": "Join the Waitlist",
         "enable_follow_on_shop": true,

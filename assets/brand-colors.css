@@ -1,0 +1,54 @@
+:root {
+  /* Extended Palette - Utility Colors */
+  --cream-light: #f7f5e8;
+  --charcoal: #2d3436;
+
+  /* Text Colors */
+  --text-dark: #2d3436;
+  --text-light: #ffffff;
+  --text-muted-dark: rgba(45, 52, 54, 0.7);
+  --text-muted-light: rgba(255, 255, 255, 0.7);
+}
+
+/* Section Background Override Utilities */
+.bg-coral {
+  background-color: var(--color-brand-coral) !important;
+  color: var(--text-light) !important;
+}
+
+.bg-cream-light {
+  background-color: var(--cream-light) !important;
+  color: var(--text-dark) !important;
+}
+
+.bg-turquoise {
+  background-color: var(--color-brand-turquoise) !important;
+  color: var(--text-dark) !important;
+}
+
+.bg-pink {
+  background-color: var(--color-brand-pink) !important;
+  color: var(--text-light) !important;
+}
+
+.bg-charcoal {
+  background-color: var(--charcoal) !important;
+  color: var(--text-light) !important;
+}
+
+/* Text Color Utilities */
+.text-dark {
+  color: var(--text-dark) !important;
+}
+
+.text-light {
+  color: var(--text-light) !important;
+}
+
+.text-muted-dark {
+  color: var(--text-muted-dark) !important;
+}
+
+.text-muted-light {
+  color: var(--text-muted-light) !important;
+}
