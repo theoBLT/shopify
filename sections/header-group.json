@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Curated treasures for little ones — almost ready to play. Opening soon in Berlin.",
+            "text": "t:custom_content.announcement_bar.homepage",
             "link": ""
           }
         }

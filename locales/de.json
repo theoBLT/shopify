@@ -544,5 +544,44 @@
         }
       }
     }
+  },
+  "custom_content": {
+    "announcement_bar": {
+      "homepage": "Kuratierte Schätze für die Kleinsten — bald bereit zum Spielen. Eröffnung bald in Berlin."
+    },
+    "hero": {
+      "heading": "Kuratierte Schätze für die Kleinsten",
+      "subtitle": "Für Eltern, die Wert auf Qualität, Kreativität und Design legen. Eröffnung Frühjahr 2026 in Schöneberg, Berlin.",
+      "button": "Über unsere Eröffnung informiert werden"
+    },
+    "what_we_curate": {
+      "heading": "Was wir kuratieren",
+      "intro": "Jede Kategorie wird mit Bedacht gewählt und zelebriert Qualität und die Freude am Entdecken.",
+      "apparel": {
+        "title": "Kleidung",
+        "description": "Durchdacht gefertigte Stücke für Alltag, Komfort und Spiel."
+      },
+      "toys": {
+        "title": "Spielzeug",
+        "description": "Gegenstände, die Fantasie wecken und zu langsamem, bedeutungsvollem Spiel einladen."
+      },
+      "books": {
+        "title": "Bücher",
+        "description": "Geschichten, Drucke und Erinnerungsstücke für wachsende Köpfe."
+      },
+      "gifts": {
+        "title": "Geschenke",
+        "description": "Bedeutungsvolle Schätze für die kleinen Momente der Kindheit."
+      }
+    },
+    "our_story": {
+      "heading": "<strong>Unsere Geschichte</strong>",
+      "body": "<p>Bei Kinder Trésor glauben wir an die Magie der Kindheit.</p><p>Wir sind ein kuratierter Kids Concept Store mit Fokus auf zeitlose Ästhetik, achtsames Design und bewusste Stücke für die Kleinsten und ihre Welten.<br/><br/>Verwurzelt in slow values und inspiriert von Design arbeiten wir mit durchdachten Kreativen und unabhängigen Marken zusammen, die Qualität, Kreativität und Storytelling schätzen.</p><p>Kinder Trésor wird im Frühjahr 2026 in Berlin eröffnen. Aktuell kuratieren wir für euch eine Sammlung durchdachter Schätze und laden inspirierende Markenpartner ein, sich uns anzuschließen.</p>",
+      "button": "Lass uns zusammenarbeiten"
+    },
+    "newsletter": {
+      "heading": "<strong>Entdecke unsere Schätze als Erste*r</strong>",
+      "text": "<p>Wir bereiten etwas Besonderes aus Berlin vor. Trage dich in unsere Early-Access-Liste ein für Updates und kuratierte Überraschungen.</p>"
+    }
   }
 }

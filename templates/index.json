@@ -15,21 +15,21 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Curated treasures for little ones",
+            "heading": "t:custom_content.hero.heading",
             "heading_size": "hxl"
           }
         },
         "text_p9XEKR": {
           "type": "text",
           "settings": {
-            "text": "For parents who care about quality, creativity and design. Launching Spring 2026 in Schöneberg, Berlin.",
+            "text": "t:custom_content.hero.subtitle",
             "text_style": "subtitle"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Get notified of our launch",
+            "button_label_1": "t:custom_content.hero.button",
             "button_link_1": "https://www.kindertresor.com#waitlist",
             "button_style_secondary_1": false,
             "button_label_2": "",
@@ -92,20 +92,20 @@
         "ai_gen_block_69d79eb_3x3CCt": {
           "type": "ai_gen_block_69d79eb",
           "settings": {
-            "section_heading": "What We Curate",
-            "intro_text": "Each category is chosen with care, celebrating quality and the joy of discovery.",
+            "section_heading": "t:custom_content.what_we_curate.heading",
+            "intro_text": "t:custom_content.what_we_curate.intro",
             "item_1_image": "shopify://shop_images/Frame_7.png",
-            "item_1_title": "Apparel",
-            "item_1_description": "Thoughtfully made pieces for everyday comfort and play.",
+            "item_1_title": "t:custom_content.what_we_curate.apparel.title",
+            "item_1_description": "t:custom_content.what_we_curate.apparel.description",
             "item_2_image": "shopify://shop_images/Frame_6.png",
-            "item_2_title": "Toys",
-            "item_2_description": "Items that inspire imagination and slow, meaningful play.",
+            "item_2_title": "t:custom_content.what_we_curate.toys.title",
+            "item_2_description": "t:custom_content.what_we_curate.toys.description",
             "item_3_image": "shopify://shop_images/Frame_8.png",
-            "item_3_title": "Books",
-            "item_3_description": "Stories, prints, and keepsakes for growing minds.",
+            "item_3_title": "t:custom_content.what_we_curate.books.title",
+            "item_3_description": "t:custom_content.what_we_curate.books.description",
             "item_4_image": "shopify://shop_images/Frame_2.png",
-            "item_4_title": "Gifts",
-            "item_4_description": "Meaningful treasures to mark childhood's little moments.",
+            "item_4_title": "t:custom_content.what_we_curate.gifts.title",
+            "item_4_description": "t:custom_content.what_we_curate.gifts.description",
             "container_width": 1200,
             "grid_gap": 30,
             "section_padding_top": 60,
@@ -143,7 +143,7 @@
         "heading_afEGJn": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>Our Story</strong>",
+            "heading": "t:custom_content.our_story.heading",
             "heading_size": "h0"
           }
         },
@@ -156,7 +156,7 @@
         "button_kedmYp": {
           "type": "button",
           "settings": {
-            "button_label": "Let’s Collaborate",
+            "button_label": "t:custom_content.our_story.button",
             "button_link": "shopify://pages/contact",
             "button_style_secondary": false,
             "button_label_2": "",

@@ -539,5 +539,44 @@
     "centered_image": {
       "add_image": "Add an image to get started"
     }
+  },
+  "custom_content": {
+    "announcement_bar": {
+      "homepage": "Curated treasures for little ones — almost ready to play. Opening soon in Berlin."
+    },
+    "hero": {
+      "heading": "Curated treasures for little ones",
+      "subtitle": "For parents who care about quality, creativity and design. Launching Spring 2026 in Schöneberg, Berlin.",
+      "button": "Get notified of our launch"
+    },
+    "what_we_curate": {
+      "heading": "What We Curate",
+      "intro": "Each category is chosen with care, celebrating quality and the joy of discovery.",
+      "apparel": {
+        "title": "Apparel",
+        "description": "Thoughtfully made pieces for everyday comfort and play."
+      },
+      "toys": {
+        "title": "Toys",
+        "description": "Items that inspire imagination and slow, meaningful play."
+      },
+      "books": {
+        "title": "Books",
+        "description": "Stories, prints, and keepsakes for growing minds."
+      },
+      "gifts": {
+        "title": "Gifts",
+        "description": "Meaningful treasures to mark childhood's little moments."
+      }
+    },
+    "our_story": {
+      "heading": "<strong>Our Story</strong>",
+      "body": "<p>At Kinder Trésor, we believe in the magic of childhood.</p><p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.<br/><br/>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in Spring 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>",
+      "button": "Let's Collaborate"
+    },
+    "newsletter": {
+      "heading": "<strong>Be the First to Discover Our Treasures</strong>",
+      "text": "<p>We're getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>"
+    }
   }
 }

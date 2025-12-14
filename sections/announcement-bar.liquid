@@ -33,6 +33,13 @@
         {{ section.blocks.first.shopify_attributes }}
       >
         {%- if section.blocks.first.settings.text != blank -%}
+          {%- liquid
+            assign announcement_text = section.blocks.first.settings.text
+            if announcement_text contains 't:'
+              assign translation_key = announcement_text | remove: 't:'
+              assign announcement_text = translation_key | t
+            endif
+          -%}
           {%- if section.blocks.first.settings.link != blank -%}
             <a
               href="{{ section.blocks.first.settings.link }}"
@@ -40,7 +47,7 @@
             >
           {%- endif -%}
           <p class="announcement-bar__message h5">
-            <span>{{ section.blocks.first.settings.text | escape }}</span>
+            <span>{{ announcement_text | escape }}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {{- 'icon-arrow.svg' | inline_asset_content -}}
             {%- endif -%}

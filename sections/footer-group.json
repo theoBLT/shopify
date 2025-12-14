@@ -37,14 +37,14 @@
         "heading_e7a7P3": {
           "type": "heading",
           "settings": {
-            "heading": "<strong>Be the First to Discover Our Treasures</strong>",
+            "heading": "t:custom_content.newsletter.heading",
             "heading_size": "h2"
           }
         },
         "paragraph_8Ep64c": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>We’re getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>"
+            "text": "<p>We're getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>"
           }
         },
         "email_form_gUeckG": {

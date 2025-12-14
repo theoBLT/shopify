@@ -162,9 +162,23 @@
   <div class="ai-curate-container-{{ ai_gen_id }}">
     {% if block.settings.section_heading != blank %}
       <div class="ai-curate-intro-{{ ai_gen_id }}">
-        <h2 class="ai-curate-heading-{{ ai_gen_id }}">{{ block.settings.section_heading }}</h2>
+        {% liquid
+          assign heading = block.settings.section_heading
+          if heading contains 't:'
+            assign translation_key = heading | remove: 't:'
+            assign heading = translation_key | t
+          endif
+        %}
+        <h2 class="ai-curate-heading-{{ ai_gen_id }}">{{ heading }}</h2>
         {% if block.settings.intro_text != blank %}
-          <p class="ai-curate-intro-text-{{ ai_gen_id }}">{{ block.settings.intro_text }}</p>
+          {% liquid
+            assign intro = block.settings.intro_text
+            if intro contains 't:'
+              assign translation_key = intro | remove: 't:'
+              assign intro = translation_key | t
+            endif
+          %}
+          <p class="ai-curate-intro-text-{{ ai_gen_id }}">{{ intro }}</p>
         {% endif %}
       </div>
     {% endif %}
@@ -182,6 +196,18 @@
         %}
 
         <div class="ai-curate-item-{{ ai_gen_id }}">
+          {% liquid
+            if item_title contains 't:'
+              assign translation_key = item_title | remove: 't:'
+              assign item_title = translation_key | t
+            endif
+
+            if item_description contains 't:'
+              assign translation_key = item_description | remove: 't:'
+              assign item_description = translation_key | t
+            endif
+          %}
+
           <div class="ai-curate-icon-wrapper-{{ ai_gen_id }}">
             {% if item_image %}
               <img

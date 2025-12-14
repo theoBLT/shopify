@@ -548,6 +548,56 @@ grep -r "similar-feature" ./snippets/
 
 ---
 
+### Translation Guidelines
+
+**CRITICAL: Always add German translations for custom content**
+
+When adding ANY custom text to the theme (homepage sections, announcements, newsletter, etc.), you MUST:
+
+1. **Add translation keys to both locale files:**
+   - `/locales/en.default.json` - English original
+   - `/locales/de.json` - German translation
+
+2. **Use the translation filter in configs:**
+   ```json
+   {
+     "heading": "{{ 'custom_content.section.key' | t }}"
+   }
+   ```
+
+3. **Naming convention:**
+   ```
+   custom_content.{section_name}.{element}
+
+   Examples:
+   - custom_content.hero.heading
+   - custom_content.newsletter.text
+   - custom_content.what_we_curate.apparel.title
+   ```
+
+4. **Translation tone:**
+   - Preserve playful-yet-sophisticated brand voice
+   - Use gender-neutral language (e.g., "Erste*r" instead of "Erster/Erste")
+   - Maintain warm, inviting, quality-focused tone
+   - Keep Berlin-specific references intact
+
+5. **Test before committing:**
+   - Verify language selector works in header
+   - Check both EN and DE versions render correctly
+   - Ensure HTML formatting (e.g., `<strong>`, `<p>`) is preserved in both languages
+
+**Files to update when adding custom text:**
+- `locales/en.default.json` (add English key)
+- `locales/de.json` (add German translation)
+- Template/section JSON file (use `{{ 'key' | t }}` filter)
+
+**Never:**
+- ❌ Hardcode text directly in JSON configs without translation keys
+- ❌ Skip German translations for customer-facing content
+- ❌ Use auto-translation tools - manually craft quality German copy
+
+---
+
 ### JavaScript Web Components
 
 **Complete lifecycle:**

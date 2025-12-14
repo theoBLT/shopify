@@ -22,6 +22,13 @@
         {%- when '@app' -%}
           {% render block %}
         {%- when 'heading' -%}
+          {%- liquid
+            assign heading = block.settings.heading
+            if heading contains 't:'
+              assign translation_key = heading | remove: 't:'
+              assign heading = translation_key | t
+            endif
+          -%}
           <h2
             class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
@@ -30,9 +37,16 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            {{ block.settings.heading }}
+            {{ heading }}
           </h2>
         {%- when 'paragraph' -%}
+          {%- liquid
+            assign paragraph_text = block.settings.text
+            if paragraph_text contains 't:'
+              assign translation_key = paragraph_text | remove: 't:'
+              assign paragraph_text = translation_key | t
+            endif
+          -%}
           <div
             class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
@@ -41,7 +55,7 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            {{ block.settings.text }}
+            {{ paragraph_text }}
           </div>
         {%- when 'email_form' -%}
           <div {{ block.shopify_attributes }}>
