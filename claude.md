@@ -585,6 +585,20 @@ When adding ANY custom text to the theme (homepage sections, announcements, news
    <h2><strong>{{ heading }}</strong></h2>
    ```
 
+4. **Avoid `| escape` on translated labels (prevents `&#39;` showing up):**
+   - Some translated strings can already contain HTML entities (e.g. `&#39;` for apostrophes).
+   - If you apply `| escape` again in Liquid, it can double-encode to `&amp;#39;`, which renders visibly as `&#39;` on the page.
+
+   ✅ **Correct (plain text button label):**
+   ```liquid
+   {{ button_label }}
+   ```
+
+   ❌ **Wrong (can double-encode entities):**
+   ```liquid
+   {{ button_label | escape }}
+   ```
+
 4. **How the translation system works:**
    - JSON config files store values with `t:` prefix: `"heading": "t:custom_content.hero.heading"`
    - Section Liquid files detect the `t:` prefix and apply translation filter:

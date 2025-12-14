@@ -170,7 +170,7 @@
                   {% endif %}
                   class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
                 >
-                  {{- button_label_1 | escape -}}
+                  {{- button_label_1 -}}
                 </a>
               {%- endif -%}
               {%- if button_label_2 != blank -%}
@@ -182,7 +182,7 @@
                   {% endif %}
                   class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
                 >
-                  {{- button_label_2 | escape -}}
+                  {{- button_label_2 -}}
                 </a>
               {%- endif -%}
             </div>
