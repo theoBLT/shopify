@@ -86,6 +86,10 @@
         "padding_bottom": 36
       }
     },
+    "stockist_row": {
+      "type": "stockist-row",
+      "settings": {}
+    },
     "17649639216ee3a391": {
       "type": "_blocks",
       "blocks": {
@@ -184,6 +188,7 @@
   "order": [
     "image_banner",
     "featured_collection",
+    "stockist_row",
     "17649639216ee3a391",
     "rich_text_wCXVB8"
   ]
