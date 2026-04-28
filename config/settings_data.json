@@ -309,10 +309,10 @@
         "settings": {
           "background": "#eaa4c8",
           "background_gradient": "",
-          "text": "#f1eecf",
-          "button": "#ffffff",
+          "text": "#2d3436",
+          "button": "#2d3436",
           "button_label": "#eaa4c8",
-          "secondary_button_label": "#f1eecf",
+          "secondary_button_label": "#2d3436",
           "shadow": "#121212"
         }
       },
