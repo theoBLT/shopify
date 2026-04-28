@@ -11,26 +11,6 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "1764967549a1192c39": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_5bd2c24_7p8FJN": {
-          "type": "ai_gen_block_5bd2c24",
-          "settings": {
-            "image": "shopify://shop_images/CleanShot_2025-12-05_at_21.47.09_2x_d0981ae3-1577-476b-b589-004bc7c2b352.png",
-            "max_width_desktop": 25,
-            "max_width_mobile": 80,
-            "padding_top": 16,
-            "padding_bottom": 16
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_5bd2c24_7p8FJN"
-      ],
-      "settings": {}
-    },
     "newsletter_6BmDjk": {
       "type": "newsletter",
       "blocks": {
@@ -85,7 +65,6 @@
     }
   },
   "order": [
-    "1764967549a1192c39",
     "newsletter_6BmDjk",
     "footer"
   ]
