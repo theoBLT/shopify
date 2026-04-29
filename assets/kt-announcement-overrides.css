@@ -1,0 +1,58 @@
+/* =============================================================================
+   kt-announcement-overrides — restyles the existing announcement-bar.liquid
+   output without forking the section.
+   When the announcement bar uses the charcoal scheme, render in the design's
+   dark variant with coral dots flanking the message.
+   ============================================================================= */
+
+.utility-bar {
+  font-family: var(--kt-font-display, "National Park", system-ui, sans-serif);
+}
+
+.utility-bar.color-scheme-brand-charcoal,
+.utility-bar.color-scheme-brand-charcoal .announcement-bar,
+.utility-bar.color-scheme-brand-charcoal .announcement-bar__message {
+  font: 600 12px/1.2 var(--kt-font-display, "National Park", system-ui, sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.utility-bar.color-scheme-brand-charcoal .announcement-bar {
+  position: relative;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.utility-bar.color-scheme-brand-charcoal .announcement-bar__message {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0;
+}
+
+/* Coral dots flanking the announcement message */
+.utility-bar.color-scheme-brand-charcoal .announcement-bar__message::before,
+.utility-bar.color-scheme-brand-charcoal .announcement-bar__message::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--kt-coral, #ec6563);
+  flex-shrink: 0;
+}
+
+/* Hide arrow inside the link variant for cleaner design rendering */
+.utility-bar.color-scheme-brand-charcoal .announcement-bar__link svg {
+  display: none;
+}
+
+/* Cream tone — quiet alternate */
+.utility-bar.color-scheme-brand-cream,
+.utility-bar.color-scheme-brand-cream-light {
+  font: 600 12px/1.2 var(--kt-font-display, "National Park", system-ui, sans-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

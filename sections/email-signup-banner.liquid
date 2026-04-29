@@ -2,6 +2,9 @@
 {{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
 {{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
 {{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.tone == 'design' -%}
+  {{ 'section-kt-newsletter.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 {%- style -%}
   #Banner-{{ section.id }}::after {
@@ -25,6 +28,114 @@
     }
   {%- endif -%}
 {%- endstyle -%}
+
+{%- if section.settings.tone == 'design' -%}
+{%- comment -%}
+  Design tone — KT-branded cyan + Kinbear treatment.
+  Reuses Shopify's {% form 'customer' %} for validated success/error UX.
+{%- endcomment -%}
+{%- liquid
+  assign sec = section.settings
+  assign kinbear_align = sec.kinbear_alignment | default: 'right'
+  assign kinbear_size = sec.kinbear_size | default: 85
+
+  for block in section.blocks
+    case block.type
+      when 'heading'
+        assign heading_block = block
+      when 'paragraph'
+        assign paragraph_block = block
+      when 'email_form'
+        assign form_block = block
+    endcase
+  endfor
+-%}
+<section
+  id="kt-newsletter"
+  class="kt-section kt-newsletter color-{{ sec.color_scheme }} gradient {% if kinbear_align == 'left' %}kt-newsletter--bear-left{% endif %}"
+  aria-labelledby="kt-newsletter-title-{{ section.id }}">
+  <div class="kt-container kt-newsletter__grid">
+    <div class="kt-newsletter__text">
+      {%- if sec.eyebrow_text != blank -%}
+        <div class="kt-eyebrow-strong kt-newsletter__eyebrow">{{ sec.eyebrow_text }}</div>
+      {%- endif -%}
+      {%- if heading_block != blank and heading_block.settings.heading != blank -%}
+        <h2 id="kt-newsletter-title-{{ section.id }}" class="kt-newsletter__title" {{ heading_block.shopify_attributes }}>
+          {{ heading_block.settings.heading | escape }}
+        </h2>
+      {%- endif -%}
+      {%- if paragraph_block != blank and paragraph_block.settings.text != blank -%}
+        <div class="kt-newsletter__sub" {{ paragraph_block.shopify_attributes }}>
+          {{ paragraph_block.settings.text }}
+        </div>
+      {%- endif -%}
+
+      {%- if form_block != blank -%}
+        <div class="kt-newsletter__form-wrap" {{ form_block.shopify_attributes }}>
+          {%- form 'customer', class: 'kt-newsletter__form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="kt-newsletter__field-row">
+              <input
+                id="KtNewsletter--{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                class="kt-input-pill kt-newsletter__input"
+                value="{{ form.email }}"
+                aria-required="true"
+                aria-label="{{ 'newsletter.label' | t }}"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                {%- if form.errors -%}
+                  autofocus
+                  aria-invalid="true"
+                  aria-describedby="KtNewsletterError--{{ section.id }}"
+                {%- elsif form.posted_successfully? -%}
+                  aria-describedby="KtNewsletterSuccess--{{ section.id }}"
+                {%- endif -%}
+                placeholder="{% if sec.placeholder != blank %}{{ sec.placeholder }}{% else %}{{ 'newsletter.label' | t }}{% endif %}"
+                required
+              >
+              <button type="submit" class="kt-button kt-button--charcoal kt-newsletter__btn" name="commit">
+                {%- if sec.button_label != blank -%}
+                  {{ sec.button_label }}
+                {%- else -%}
+                  {{ 'newsletter.button_label' | t }}
+                {%- endif -%}
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <small class="kt-newsletter__msg kt-newsletter__msg--error" id="KtNewsletterError--{{ section.id }}">
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </small>
+            {%- endif -%}
+            {%- if form.posted_successfully? -%}
+              <p class="kt-newsletter__msg kt-newsletter__msg--success"
+                 id="KtNewsletterSuccess--{{ section.id }}" tabindex="-1" autofocus>
+                {%- if sec.success_message != blank -%}{{ sec.success_message }}{%- else -%}{{ 'newsletter.success' | t }}{%- endif -%}
+              </p>
+            {%- endif -%}
+          {%- endform -%}
+
+          {%- if sec.hint != blank -%}
+            <p class="kt-newsletter__hint">{{ sec.hint }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="kt-newsletter__art" style="--kt-newsletter-bear-size: {{ kinbear_size }}%;">
+      {% render 'kt-image',
+          image: sec.kinbear_image,
+          inline_asset_fallback: sec.kinbear_inline_asset | default: 'kinbear-cream.svg',
+          class: 'kt-newsletter__bear kt-float-slow',
+          alt: sec.kinbear_alt,
+          loading: 'lazy' %}
+    </div>
+  </div>
+</section>
+{%- else -%}
 
 <div
   id="Banner-{{ section.id }}"
@@ -141,6 +252,7 @@
     </div>
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -148,9 +260,98 @@
   "tag": "section",
   "class": "section",
   "enabled_on": {
-    "templates": ["password"]
+    "templates": ["*"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Tone"
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Visual treatment",
+      "info": "\"Design\" uses the Kinder Tresor brand layout (cyan + Kinbear, pill input). \"Classic\" uses Shopify's default banner.",
+      "options": [
+        { "value": "design",  "label": "Design (Kinder Tresor)" },
+        { "value": "classic", "label": "Classic (Shopify default)" }
+      ],
+      "default": "classic"
+    },
+    {
+      "type": "header",
+      "content": "Design tone — Kinder Tresor"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow",
+      "default": "The Tresor letter"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "We'll be in touch."
+    },
+    {
+      "type": "text",
+      "id": "hint",
+      "label": "Helper hint (under form)",
+      "default": "Early subscribers get the first invite to our private opening night."
+    },
+    {
+      "type": "image_picker",
+      "id": "kinbear_image",
+      "label": "Kinbear image (design tone)",
+      "info": "Defaults to the cream Kinbear shipped with the theme."
+    },
+    {
+      "type": "text",
+      "id": "kinbear_inline_asset",
+      "label": "Default Kinbear asset",
+      "info": "Filename in theme/assets/ — used when no image is uploaded.",
+      "default": "kinbear-cream.svg"
+    },
+    {
+      "type": "text",
+      "id": "kinbear_alt",
+      "label": "Kinbear alt text",
+      "default": "Kinbear holding the Tresor letter"
+    },
+    {
+      "type": "range",
+      "id": "kinbear_size",
+      "label": "Kinbear width",
+      "min": 50, "max": 100, "step": 5,
+      "default": 85, "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "kinbear_alignment",
+      "label": "Kinbear column",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Classic tone — Shopify default"
+    },
     {
       "type": "paragraph",
       "content": "t:sections.email-signup-banner.settings.paragraph.content"
@@ -391,17 +592,39 @@
   ],
   "presets": [
     {
-      "name": "t:sections.email-signup-banner.presets.name",
+      "name": "Newsletter (Kinder Tresor design)",
+      "settings": {
+        "tone": "design",
+        "color_scheme": "scheme-brand-turquoise",
+        "eyebrow_text": "The Tresor letter",
+        "kinbear_inline_asset": "kinbear-cream.svg",
+        "kinbear_alignment": "right"
+      },
       "blocks": [
         {
-          "type": "heading"
+          "type": "heading",
+          "settings": {
+            "heading": "Be the first to discover our treasures.",
+            "heading_size": "h0"
+          }
         },
         {
-          "type": "paragraph"
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>A monthly note — opening news, maker stories and the occasional small joy. No spam, ever.</p>"
+          }
         },
         {
           "type": "email_form"
         }
+      ]
+    },
+    {
+      "name": "t:sections.email-signup-banner.presets.name",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "paragraph" },
+        { "type": "email_form" }
       ]
     }
   ]

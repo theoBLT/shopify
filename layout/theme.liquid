@@ -9,6 +9,16 @@
 
     {{ 'national-park.css' | asset_url | stylesheet_tag }}
     {{ 'nunito.css' | asset_url | stylesheet_tag }}
+    {{ 'brand-fonts.css' | asset_url | stylesheet_tag }}
+    {{ 'brand-tokens.css' | asset_url | stylesheet_tag }}
+    {{ 'brand-colors.css' | asset_url | stylesheet_tag }}
+    {{ 'kt-header-overrides.css' | asset_url | stylesheet_tag }}
+    {{ 'kt-footer-overrides.css' | asset_url | stylesheet_tag }}
+    {{ 'kt-announcement-overrides.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%} Preload the most-likely-used font weights for first paint. {%- endcomment -%}
+    <link rel="preload" as="font" type="font/woff" href="{{ 'NationalPark-SemiBold.woff' | asset_url }}" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="{{ 'Bricolage-Grotesque-latin.woff2' | asset_url }}" crossorigin>
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">

@@ -571,12 +571,89 @@
     },
     "our_story": {
       "heading": "Our Story",
-      "body": "<p>At Kinder Trésor, we believe in the magic of childhood.</p><p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.<br/><br/>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in May 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>",
+      "body": "<p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.<br/><br/>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in May 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>",
       "button": "Let's Collaborate"
     },
     "newsletter": {
       "heading": "Be the First to Discover Our Treasures",
       "text": "<p>We're getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>"
+    },
+    "kt_announce": {
+      "homepage": "Curated treasures for little ones — opening May 2026 in Schöneberg, Berlin"
+    },
+    "kt_header": {
+      "subscribe": "Subscribe"
+    },
+    "kt_hero": {
+      "eyebrow": "Opening · May 2026 · Schöneberg",
+      "title_line_1": "Curated treasures",
+      "title_line_2": "for little ones.",
+      "subtitle": "<p>For parents who care about quality, creativity and design. Launching May 2026 in Schöneberg, Berlin.</p>",
+      "retail_note": "We're launching our physical retail store first. Online orders will follow when we're ready.",
+      "stamp_top": "OPENING",
+      "stamp_middle": "MAY",
+      "stamp_bottom": "2026",
+      "kinbear_alt": "Kinbear waving",
+      "cta_primary": "Get notified of our launch"
+    },
+    "kt_categories": {
+      "eyebrow": "What we curate",
+      "title": "Carefully curated for little ones.",
+      "subtitle": "<p>Each category is chosen with care, celebrating quality and the joy of discovery.</p>",
+      "apparel": "Apparel",
+      "toys": "Toys",
+      "books": "Books",
+      "gifts": "Gifts"
+    },
+    "kt_story": {
+      "eyebrow": "What we stand for",
+      "heading": "We believe in the magic of childhood.",
+      "body": "<p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.</p><p>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in May 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>",
+      "cta_label": "Let's Collaborate",
+      "frame_caption": "Kinbear says hi."
+    },
+    "kt_newsletter": {
+      "heading": "Be the first to discover our treasures.",
+      "text": "<p>We're getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>",
+      "placeholder": "your@email.com",
+      "button": "Subscribe",
+      "success": "We'll be in touch.",
+      "kinbear_alt": "Kinbear holding the newsletter"
+    },
+    "kt_visit": {
+      "eyebrow": "Visit",
+      "title": "Come and see us.",
+      "subtitle": "<p>Belziger Str. 20, 5 minutes from Bayerischer Platz and right on Akazienstraße.</p>",
+      "address_label": "Address",
+      "address_strong": "Kinder Tresor",
+      "address_extra": "<p>Belziger Str. 20<br>10823 Berlin · Schöneberg</p>",
+      "hours_label": "Hours",
+      "hours_strong": "Tuesday — Saturday · 11:00 — 17:30",
+      "hours_note": "Opening: May 2026",
+      "directions_label": "Get directions",
+      "pin_label": "Belziger Str. 20"
+    },
+    "kt_ig": {
+      "eyebrow": "On the gram",
+      "title": "@kindertresor",
+      "cta": "Follow along"
+    },
+    "kt_faq": {
+      "eyebrow": "Small questions",
+      "title": "Things people ask us.",
+      "q1": "When are you opening?",
+      "a1": "<p>May 2026, in the heart of Schöneberg, Berlin. <a href=\"#kt-newsletter\">Subscribe to our newsletter</a> and you'll be the first to know the exact date.</p>",
+      "q2": "Is there an online shop?",
+      "a2": "<p>Not yet — we're starting with a retail-first store. Click & collect and online sales will follow once the shop is on its feet. We want to do each step properly.</p>",
+      "q3": "Where exactly is the store?",
+      "a3": "<p>Belziger Str. 20, 10823 Berlin · Schöneberg — a short walk from Akazienstraße and Bayerischer Platz. <a href=\"https://www.google.com/maps/place/Belziger+Str.+20,+10823+Berlin\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>.</p>",
+      "q4": "Can my brand be stocked?",
+      "a4": "<p><a href=\"/pages/contact\">Use the contact form</a> and tell us about your brand. We read every email.</p>",
+      "q5": "Are you hiring?",
+      "a5": "<p>We will be at or around opening time, looking for sales associates. <a href=\"/pages/contact\">Send a note via the contact form</a>.</p>"
+    },
+    "kt_footer": {
+      "copyright": "© 2026 Kinder Tresor — Made with care in Berlin."
     }
   }
 }

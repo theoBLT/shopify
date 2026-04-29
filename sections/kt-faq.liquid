@@ -1,0 +1,123 @@
+{%- comment -%}
+  KT FAQ — "Small questions" accordion. Each question is a repeating block.
+  Built on native <details> so it's keyboard-navigable without JS.
+{%- endcomment -%}
+
+{{ 'section-kt-faq.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sec = section.settings
+-%}
+
+<section
+  class="kt-section kt-faq color-{{ sec.color_scheme }} gradient"
+  aria-labelledby="kt-faq-title-{{ section.id }}">
+  <div class="kt-container kt-faq__grid">
+    <div class="kt-faq__head">
+      {%- if sec.eyebrow != blank -%}
+        <div class="kt-eyebrow-strong kt-faq__eyebrow">{{ sec.eyebrow }}</div>
+      {%- endif -%}
+      {%- if sec.title != blank -%}
+        <h2 id="kt-faq-title-{{ section.id }}" class="kt-faq__title">{{ sec.title }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="kt-faq__list">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'qa' -%}
+          <details class="kt-faq__item"
+            {% if block.settings.default_open %}open{% endif %}
+            {{ block.shopify_attributes }}>
+            <summary class="kt-faq__q">
+              <span class="kt-faq__q-text">{{ block.settings.question }}</span>
+              <span class="kt-faq__chev" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="kt-faq__a">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ (Kinder Tresor)",
+  "tag": "section",
+  "class": "section section-kt-faq",
+  "enabled_on": { "templates": ["*"] },
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Small questions"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Things people ask us."
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-brand-cream"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Question",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "When are you opening?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>May 2026, in the heart of Schöneberg, Berlin. Subscribe to the Tresor letter and you'll be the first to know the exact date.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "default_open",
+          "label": "Open by default",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ (Kinder Tresor)",
+      "blocks": [
+        { "type": "qa", "settings": { "question": "When are you opening?", "answer": "<p>May 2026, in the heart of Schöneberg, Berlin. <a href=\"#kt-newsletter\">Subscribe to our newsletter</a> and you'll be the first to know the exact date.</p>", "default_open": true } },
+        { "type": "qa", "settings": { "question": "Is there an online shop?", "answer": "<p>Not yet — we're starting with a retail-first store. Click & collect and online sales will follow once the shop is on its feet. We want to do each step properly.</p>" } },
+        { "type": "qa", "settings": { "question": "Where exactly is the store?", "answer": "<p>Belziger Str. 20, 10823 Berlin · Schöneberg — a short walk from Akazienstraße and Bayerischer Platz. <a href=\"https://www.google.com/maps/place/Belziger+Str.+20,+10823+Berlin\" target=\"_blank\" rel=\"noopener noreferrer\">Open in Google Maps</a>.</p>" } },
+        { "type": "qa", "settings": { "question": "Can my brand be stocked?", "answer": "<p><a href=\"/pages/contact\">Use the contact form</a> and tell us about your brand. We read every email.</p>" } },
+        { "type": "qa", "settings": { "question": "Are you hiring?", "answer": "<p>We will be at or around opening time, looking for sales associates. <a href=\"/pages/contact\">Send a note via the contact form</a>.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

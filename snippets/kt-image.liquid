@@ -1,0 +1,74 @@
+{%- comment -%}
+  KT image snippet — renders a Shopify image with responsive srcset, OR
+  inlines a theme-asset SVG when the merchant hasn't uploaded their own image.
+
+  WHY: <img>-loaded SVGs strip <clipPath> and <style> blocks (browser security
+  sandboxing). The brand Kinbear SVGs (cat01–04) rely on clipPath for the
+  sweater-stripe clipping. Inline <svg> rendering preserves them. See:
+  homepage-redesign chat transcript Apr 2026 for the diagnosis.
+
+  Usage:
+    {% render 'kt-image',
+        image: section.settings.kinbear_image,
+        inline_asset_fallback: 'kinbear-blue-real.svg',
+        class: 'hero-bear kt-wave',
+        alt: 'Tresor the Kinbear',
+        width: 420,
+        height: 420,
+        loading: 'lazy' %}
+
+  Parameters:
+    image                  — Shopify image object (image_picker setting). Optional.
+    inline_asset_fallback  — Filename in theme/assets/ to inline if image is blank.
+                             Must end in .svg for inlining; other extensions fall
+                             back to {{ asset_url | img_tag }}.
+    class                  — CSS class string applied to the wrapper.
+    alt                    — Alt text. Required when image is set.
+    width / height         — Explicit dimensions for CLS prevention.
+    loading                — 'lazy' (default) or 'eager' (above-the-fold hero).
+    sizes                  — Custom sizes attribute, defaults to '(min-width: 990px) 50vw, 100vw'.
+{%- endcomment -%}
+
+{%- liquid
+  assign img_class = class | default: ''
+  assign img_alt = alt | default: ''
+  assign img_loading = loading | default: 'lazy'
+  assign img_sizes = sizes | default: '(min-width: 990px) 50vw, 100vw'
+  assign img_widths = '375, 550, 750, 1100, 1500, 2000'
+  assign img_width = width | default: 800
+  assign img_height = height | default: 800
+-%}
+
+{%- if image != blank -%}
+  {%- comment -%} Merchant-uploaded image (image_picker). {%- endcomment -%}
+  {{ image
+    | image_url: width: 2000
+    | image_tag:
+        loading: img_loading,
+        widths: img_widths,
+        width: image.width,
+        height: image.height,
+        sizes: img_sizes,
+        class: img_class,
+        alt: img_alt
+  }}
+{%- elsif inline_asset_fallback != blank -%}
+  {%- comment -%}
+    Theme-asset fallback. Render as <img>. Shopify's inline_asset_content has a
+    15KB cap that the brand Kinbear SVGs blow past, so we accept the <img>-loaded
+    SVG quirks (clipPath overflow on cat01 is a known issue documented in the
+    chat transcript) until the brand designer ships SVGs without clipPath.
+  {%- endcomment -%}
+  <img
+    src="{{ inline_asset_fallback | asset_url }}"
+    class="{{ img_class }}"
+    alt="{{ img_alt | escape }}"
+    loading="{{ img_loading }}"
+    decoding="async"
+    width="{{ img_width }}"
+    height="{{ img_height }}">
+{%- else -%}
+  {%- comment -%} No image and no fallback — render a transparent 1x1 placeholder. {%- endcomment -%}
+  <span class="kt-image-empty {{ img_class }}" aria-hidden="true"
+        {% if width %}style="display:inline-block;width:{{ width }}px;{% if height %}height:{{ height }}px;{% endif %}"{% endif %}></span>
+{%- endif -%}

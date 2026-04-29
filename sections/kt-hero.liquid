@@ -1,0 +1,377 @@
+{%- comment -%}
+  KT Hero — bespoke homepage hero matching the Anthropic Design handoff.
+  Cream backdrop, coral eyebrow, two-line display title with crayon underline
+  on the italic line 2, subtitle, two pill CTAs (blocks), dashed-top retail
+  note, animated Kinbear on a pink halo, yellow rotated date stamp.
+
+  Every visible string, image, and color is editable via the theme editor.
+{%- endcomment -%}
+
+{{ 'section-kt-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sec = section.settings
+  assign halo = sec.halo_color | default: '#eaa4c8'
+  assign stamp_bg = sec.stamp_color | default: '#f5d748'
+  assign crayon = sec.crayon_color | default: '#ec6563'
+  assign anim = sec.kinbear_animation | default: 'wave'
+  assign bear_class = 'kt-hero__bear'
+  if anim == 'wave'
+    assign bear_class = 'kt-hero__bear kt-wave'
+  elsif anim == 'float'
+    assign bear_class = 'kt-hero__bear kt-float'
+  endif
+-%}
+
+{%- style -%}
+  #kt-hero-{{ section.id }} {
+    --kt-hero-halo: {{ halo }};
+    --kt-hero-stamp-bg: {{ stamp_bg }};
+    --kt-hero-crayon: {{ crayon }};
+    padding-top: {{ sec.padding_top | default: 0 }}px;
+    padding-bottom: {{ sec.padding_bottom | default: 0 }}px;
+  }
+{%- endstyle -%}
+
+<section
+  id="kt-hero-{{ section.id }}"
+  class="kt-hero color-{{ sec.color_scheme }} gradient"
+  aria-labelledby="kt-hero-title-{{ section.id }}">
+  <div class="kt-container kt-hero__grid">
+    {%- comment -%} Decorative dots, top-left {%- endcomment -%}
+    {%- if sec.show_dots -%}
+      <svg class="kt-hero__dots" aria-hidden="true" width="80" height="14" viewBox="0 0 80 14">
+        <circle cx="6"  cy="7" r="2.5" fill="{{ crayon }}" />
+        <circle cx="22" cy="7" r="2.5" fill="{{ crayon }}" />
+        <circle cx="38" cy="7" r="2.5" fill="{{ crayon }}" />
+        <circle cx="54" cy="7" r="2.5" fill="{{ crayon }}" />
+        <circle cx="70" cy="7" r="2.5" fill="{{ crayon }}" />
+      </svg>
+    {%- endif -%}
+
+    <div class="kt-hero__text">
+      {%- if sec.eyebrow_text != blank -%}
+        <div class="kt-eyebrow-strong kt-hero__eyebrow" style="color: {{ crayon }};">
+          {{ sec.eyebrow_text }}
+        </div>
+      {%- endif -%}
+
+      <h1 id="kt-hero-title-{{ section.id }}" class="kt-hero__title">
+        {%- if sec.title_line_1 != blank -%}
+          <span class="kt-hero__title-line-1">{{ sec.title_line_1 }}</span>
+        {%- endif -%}
+        {%- if sec.title_line_2 != blank -%}
+          <br>
+          <span class="kt-hero__title-line-2">
+            <em>{{ sec.title_line_2 }}</em>
+            {%- if sec.show_crayon_underline -%}
+              <svg class="kt-hero__crayon" aria-hidden="true" viewBox="0 0 400 18" preserveAspectRatio="none">
+                <defs>
+                  <filter id="kt-hero-crayon-{{ section.id }}" x="-2%" y="-50%" width="104%" height="200%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/>
+                    <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+                  </filter>
+                </defs>
+                <path d="M3 13 Q 100 3 200 11 T 397 9"
+                      stroke="{{ crayon }}" stroke-width="6" fill="none"
+                      stroke-linecap="round" filter="url(#kt-hero-crayon-{{ section.id }})" opacity="0.95"/>
+                <path d="M5 13 Q 100 4 200 11 T 395 9"
+                      stroke="{{ crayon }}" stroke-width="3" fill="none"
+                      stroke-linecap="round" filter="url(#kt-hero-crayon-{{ section.id }})" opacity="0.6"/>
+              </svg>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+      </h1>
+
+      {%- if sec.subtitle != blank -%}
+        <div class="kt-hero__sub">{{ sec.subtitle }}</div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="kt-btn-row kt-hero__ctas">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'cta_button' -%}
+              {%- liquid
+                assign btn_style = block.settings.style | default: 'coral'
+                assign btn_class = 'kt-button kt-button--' | append: btn_style
+              -%}
+              <a href="{{ block.settings.link | default: '#' }}"
+                 class="{{ btn_class }}"
+                 {{ block.shopify_attributes }}>
+                {{ block.settings.label }}
+                {%- if block.settings.icon_arrow -%} <span aria-hidden="true">→</span>{%- endif -%}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if sec.retail_note != blank -%}
+        <div class="kt-hero__foot">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+            <path d="M3 9l1.5-5h15L21 9"/>
+            <path d="M3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/>
+          </svg>
+          <span>{{ sec.retail_note }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="kt-hero__art">
+      <div class="kt-hero__halo" aria-hidden="true"></div>
+
+      {%- if sec.stamp_visible -%}
+        <div class="kt-hero__stamp" aria-hidden="true">
+          <div class="kt-hero__stamp-inner">
+            {%- if sec.stamp_label_top != blank -%}
+              <span class="kt-hero__stamp-month">{{ sec.stamp_label_top }}</span>
+            {%- endif -%}
+            {%- if sec.stamp_label_middle != blank -%}
+              <span class="kt-hero__stamp-day">{{ sec.stamp_label_middle }}</span>
+            {%- endif -%}
+            {%- if sec.stamp_label_bottom != blank -%}
+              <span class="kt-hero__stamp-year">{{ sec.stamp_label_bottom }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {% render 'kt-image',
+          image: sec.kinbear_image,
+          inline_asset_fallback: 'kinbear-blue-real.svg',
+          class: bear_class,
+          alt: sec.kinbear_alt,
+          loading: 'eager',
+          width: 420,
+          height: 420 %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero (Kinder Tresor)",
+  "tag": "section",
+  "class": "section section-kt-hero",
+  "enabled_on": { "templates": ["index", "page"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Copy"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow",
+      "default": "Opening · May 2026 · Schöneberg"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title — line 1",
+      "default": "Curated treasures"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title_line_2",
+      "label": "Title — line 2 (italic)",
+      "info": "Rendered as italic with a crayon underline.",
+      "default": "for little ones."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_crayon_underline",
+      "label": "Show crayon underline on line 2",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>For parents who care about quality, creativity and design. Launching May 2026 in Schöneberg, Berlin.</p>"
+    },
+    {
+      "type": "text",
+      "id": "retail_note",
+      "label": "Retail-first note",
+      "info": "Small dashed-top line under the CTAs.",
+      "default": "A retail-first store. Online shop comes later — when we're ready."
+    },
+    {
+      "type": "header",
+      "content": "Kinbear"
+    },
+    {
+      "type": "image_picker",
+      "id": "kinbear_image",
+      "label": "Kinbear image",
+      "info": "Defaults to the cyan Kinbear shipped with the theme. Upload your own to override."
+    },
+    {
+      "type": "text",
+      "id": "kinbear_alt",
+      "label": "Kinbear alt text",
+      "default": "Tresor the Kinbear waving"
+    },
+    {
+      "type": "select",
+      "id": "kinbear_animation",
+      "label": "Kinbear animation",
+      "options": [
+        { "value": "wave", "label": "Wave (subtle tilt)" },
+        { "value": "float", "label": "Float (gentle bob)" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "wave"
+    },
+    {
+      "type": "color",
+      "id": "halo_color",
+      "label": "Halo color",
+      "default": "#eaa4c8"
+    },
+    {
+      "type": "header",
+      "content": "Date stamp"
+    },
+    {
+      "type": "checkbox",
+      "id": "stamp_visible",
+      "label": "Show date stamp",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stamp_label_top",
+      "label": "Stamp — top line",
+      "default": "OPENING"
+    },
+    {
+      "type": "text",
+      "id": "stamp_label_middle",
+      "label": "Stamp — middle line",
+      "default": "MAY"
+    },
+    {
+      "type": "text",
+      "id": "stamp_label_bottom",
+      "label": "Stamp — bottom line",
+      "default": "2026"
+    },
+    {
+      "type": "color",
+      "id": "stamp_color",
+      "label": "Stamp color",
+      "default": "#f5d748"
+    },
+    {
+      "type": "header",
+      "content": "Decoration"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show top-left coral dots",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "crayon_color",
+      "label": "Eyebrow & crayon underline color",
+      "default": "#ec6563"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-brand-cream-light"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0, "max": 200, "step": 4,
+      "default": 0, "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0, "max": 200, "step": 4,
+      "default": 0, "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cta_button",
+      "name": "CTA button",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Get notified of our launch"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "coral",     "label": "Coral (filled)" },
+            { "value": "charcoal",  "label": "Charcoal (filled)" },
+            { "value": "cream",     "label": "Cream (filled)" },
+            { "value": "cyan",      "label": "Cyan (filled)" },
+            { "value": "pink",      "label": "Pink (filled)" },
+            { "value": "secondary", "label": "Charcoal outline" },
+            { "value": "ghost",     "label": "Ghost (light outline)" }
+          ],
+          "default": "coral"
+        },
+        {
+          "type": "checkbox",
+          "id": "icon_arrow",
+          "label": "Show arrow",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero (Kinder Tresor)",
+      "blocks": [
+        {
+          "type": "cta_button",
+          "settings": {
+            "label": "Get notified of our launch",
+            "link": "#kt-newsletter",
+            "style": "coral",
+            "icon_arrow": true
+          }
+        },
+        {
+          "type": "cta_button",
+          "settings": {
+            "label": "Read our story",
+            "link": "shopify://pages/contact",
+            "style": "ghost",
+            "icon_arrow": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -5,191 +5,255 @@
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
+ *
+ * 2026-04-29 — redesigned to match the Anthropic Design handoff.
+ * Section order: kt-hero → stockist-row → kt-categories → kt-story →
+ *               email-signup-banner (design tone) → kt-visit →
+ *               kt-ig-strip → kt-faq.
+ *
+ * Note on translation: section settings are saved as literal strings.
+ * For DE rendering, install Shopify "Translate & Adapt" and translate each
+ * setting per locale. The schema defaults reference custom_content.kt_*
+ * locale keys via t:* — those work in the editor but section settings save
+ * the resolved text, so the EN values below are what Translate & Adapt
+ * sees as source-of-truth.
  * ------------------------------------------------------------
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "kt_hero": {
+      "type": "kt-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "cta_primary": {
+          "type": "cta_button",
           "settings": {
-            "heading": "t:custom_content.hero.heading",
-            "heading_size": "hxl"
-          }
-        },
-        "text_p9XEKR": {
-          "type": "text",
-          "settings": {
-            "text": "t:custom_content.hero.subtitle",
-            "text_style": "subtitle"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "t:custom_content.hero.button",
-            "button_link_1": "https://www.kindertresor.com#waitlist",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "label": "Get notified of our launch",
+            "link": "#kt-newsletter",
+            "style": "coral",
+            "icon_arrow": true
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text_p9XEKR",
-        "button"
-      ],
+      "block_order": ["cta_primary"],
       "settings": {
-        "image": "shopify://shop_images/bear.png",
-        "image_overlay_opacity": 10,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-brand-turquoise",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "disabled": true,
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
+        "eyebrow_text": "Opening · May 2026 · Schöneberg",
+        "title_line_1": "Curated treasures",
+        "title_line_2": "for little ones.",
+        "show_crayon_underline": true,
+        "subtitle": "<p>For parents who care about quality, creativity and design. Launching May 2026 in Schöneberg, Berlin.</p>",
+        "retail_note": "We're launching our physical retail store first. Online orders will follow when we're ready.",
+        "kinbear_alt": "Kinbear waving",
+        "kinbear_animation": "wave",
+        "halo_color": "#eaa4c8",
+        "stamp_visible": true,
+        "stamp_label_top": "OPENING",
+        "stamp_label_middle": "MAY",
+        "stamp_label_bottom": "2026",
+        "stamp_color": "#f5d748",
+        "show_dots": true,
+        "crayon_color": "#ec6563",
+        "color_scheme": "scheme-brand-cream-light",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "stockist_row": {
       "type": "stockist-row",
       "settings": {}
     },
-    "17649639216ee3a391": {
-      "type": "_blocks",
+    "kt_categories": {
+      "type": "kt-categories",
       "blocks": {
-        "ai_gen_block_69d79eb_3x3CCt": {
-          "type": "ai_gen_block_69d79eb",
-          "settings": {
-            "section_heading": "t:custom_content.what_we_curate.heading",
-            "intro_text": "t:custom_content.what_we_curate.intro",
-            "item_1_image": "shopify://shop_images/Frame_7.png",
-            "item_1_title": "t:custom_content.what_we_curate.apparel.title",
-            "item_1_description": "t:custom_content.what_we_curate.apparel.description",
-            "item_2_image": "shopify://shop_images/Frame_6.png",
-            "item_2_title": "t:custom_content.what_we_curate.toys.title",
-            "item_2_description": "t:custom_content.what_we_curate.toys.description",
-            "item_3_image": "shopify://shop_images/Frame_8.png",
-            "item_3_title": "t:custom_content.what_we_curate.books.title",
-            "item_3_description": "t:custom_content.what_we_curate.books.description",
-            "item_4_image": "shopify://shop_images/Frame_2.png",
-            "item_4_title": "t:custom_content.what_we_curate.gifts.title",
-            "item_4_description": "t:custom_content.what_we_curate.gifts.description",
-            "container_width": 1200,
-            "grid_gap": 30,
-            "section_padding_top": 60,
-            "section_padding_bottom": 60,
-            "heading_size": 48,
-            "heading_spacing": 22,
-            "intro_text_size": 20,
-            "intro_spacing": 35,
-            "item_title_size": 28,
-            "title_spacing": 12,
-            "item_description_size": 16,
-            "icon_size": 80,
-            "icon_spacing": 20,
-            "item_padding": 20,
-            "item_border_radius": 8,
-            "background_color": "#f7f5e8",
-            "heading_color": "#2d3436",
-            "intro_text_color": "#2d3436",
-            "item_background": "#ffffff",
-            "item_title_color": "#2d3436",
-            "item_description_color": "#2d3436",
-            "icon_placeholder_bg": "#e0e0e0"
-          },
-          "blocks": {}
-        }
+        "cat_apparel": { "type": "category_card", "settings": { "name": "Apparel", "bg_color": "yellow", "animation": "float" } },
+        "cat_toys":    { "type": "category_card", "settings": { "name": "Toys",    "bg_color": "pink",   "animation": "float_slow" } },
+        "cat_books":   { "type": "category_card", "settings": { "name": "Books",   "bg_color": "cyan",   "animation": "float" } },
+        "cat_gifts":   { "type": "category_card", "settings": { "name": "Gifts",   "bg_color": "green",  "animation": "float_slow" } }
       },
-      "block_order": [
-        "ai_gen_block_69d79eb_3x3CCt"
-      ],
-      "settings": {}
+      "block_order": ["cat_apparel", "cat_toys", "cat_books", "cat_gifts"],
+      "settings": {
+        "eyebrow": "What we curate",
+        "title": "Carefully curated for little ones.",
+        "subtitle": "<p>Each category is chosen with care, celebrating quality and the joy of discovery.</p>",
+        "corner_motif_visible": true,
+        "color_scheme": "scheme-brand-cream-light"
+      }
     },
-    "rich_text_wCXVB8": {
-      "type": "rich-text",
+    "kt_story": {
+      "type": "kt-story",
+      "settings": {
+        "eyebrow": "What we stand for",
+        "heading": "We believe in the magic of childhood.",
+        "body": "<p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.</p><p>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in May 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>",
+        "cta_label": "Let's Collaborate",
+        "cta_link": "/pages/contact",
+        "cta_arrow": true,
+        "frame_caption": "Kinbear says hi.",
+        "frame_rotation": -1.5,
+        "tape_color": "#ec6563",
+        "color_scheme": "scheme-brand-cream"
+      }
+    },
+    "kt_newsletter": {
+      "type": "email-signup-banner",
       "blocks": {
-        "heading_afEGJn": {
+        "heading": {
           "type": "heading",
           "settings": {
-            "heading": "t:custom_content.our_story.heading",
+            "heading": "Be the first to discover our treasures.",
             "heading_size": "h0"
           }
         },
-        "text_fgWFPW": {
-          "type": "text",
+        "paragraph": {
+          "type": "paragraph",
           "settings": {
-            "text": "<p>At Kinder Trésor, we believe in the magic of childhood.</p><p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.<br/><br/>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in May 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>"
+            "text": "<p>We're getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>",
+            "text_style": "body"
           }
         },
-        "button_kedmYp": {
-          "type": "button",
+        "email_form": { "type": "email_form" }
+      },
+      "block_order": ["heading", "paragraph", "email_form"],
+      "settings": {
+        "tone": "design",
+        "color_scheme": "scheme-brand-turquoise",
+        "eyebrow_text": "",
+        "placeholder": "your@email.com",
+        "button_label": "Subscribe",
+        "success_message": "We'll be in touch.",
+        "hint": "",
+        "kinbear_inline_asset": "kinbear-story.svg",
+        "kinbear_alt": "Kinbear holding the newsletter",
+        "kinbear_size": 85,
+        "kinbear_alignment": "right",
+        "show_background_image": false,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "kt_visit": {
+      "type": "kt-visit",
+      "blocks": {
+        "map": {
+          "type": "map",
           "settings": {
-            "button_label": "t:custom_content.our_story.button",
-            "button_link": "shopify://pages/contact",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "provider": "osm",
+            "latitude": "52.4895",
+            "longitude": "13.3477",
+            "zoom": 16,
+            "bbox_padding_thousandths": 5,
+            "pin_label": "Belziger Str. 20",
+            "directions_url": "https://www.google.com/maps/place/Belziger+Str.+20,+10823+Berlin",
+            "directions_label": "Get directions",
+            "mapbox_token": ""
+          }
+        },
+        "info_address": {
+          "type": "info",
+          "settings": {
+            "label": "Address",
+            "value_strong": "Kinder Tresor",
+            "value_extra_lines": "<p>Belziger Str. 20</p><p>10823 Berlin · Schöneberg</p>"
+          }
+        },
+        "info_hours": {
+          "type": "info",
+          "settings": {
+            "label": "Hours",
+            "value_strong": "Tuesday — Saturday · 11:00 — 17:30",
+            "value_extra_lines": "",
+            "value_note": "Opening: May 2026"
           }
         }
       },
-      "block_order": [
-        "heading_afEGJn",
-        "text_fgWFPW",
-        "button_kedmYp"
-      ],
-      "name": "t:sections.rich-text.presets.name",
+      "block_order": ["map", "info_address", "info_hours"],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-brand-pink",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "eyebrow": "Visit",
+        "title": "Come and see us.",
+        "subtitle": "<p>Belziger Str. 20, 5 minutes from Bayerischer Platz and right on Akazienstraße.</p>",
+        "color_scheme": "scheme-brand-cream-light"
+      }
+    },
+    "kt_ig": {
+      "type": "kt-ig-strip",
+      "blocks": {
+        "tile_1": { "type": "tile", "settings": { "bg_color": "pink",   "inline_asset": "kinbear-blue-real.svg",    "aria_label": "Open Instagram" } },
+        "tile_2": { "type": "tile", "settings": { "bg_color": "cream",  "inline_asset": "kinbear-cat01-fixed.svg",  "aria_label": "Open Instagram" } },
+        "tile_3": { "type": "tile", "settings": { "bg_color": "cyan",   "inline_asset": "kinbear-cat02-fixed.svg",  "aria_label": "Open Instagram" } },
+        "tile_4": { "type": "tile", "settings": { "bg_color": "yellow", "inline_asset": "kinbear-story.svg",        "aria_label": "Open Instagram" } },
+        "tile_5": { "type": "tile", "settings": { "bg_color": "coral",  "inline_asset": "kinbear-cat03-fixed.svg",  "aria_label": "Open Instagram" } },
+        "tile_6": { "type": "tile", "settings": { "bg_color": "green",  "inline_asset": "kinbear-cat04-fixed.svg",  "aria_label": "Open Instagram" } }
+      },
+      "block_order": ["tile_1", "tile_2", "tile_3", "tile_4", "tile_5", "tile_6"],
+      "settings": {
+        "eyebrow": "On the gram",
+        "title": "@kindertresor",
+        "cta_label": "Follow along",
+        "cta_link": "https://instagram.com/kindertresor",
+        "tile_columns_desktop": 6,
+        "tile_columns_mobile": 2,
+        "color_scheme": "scheme-brand-cream-light"
+      }
+    },
+    "kt_faq": {
+      "type": "kt-faq",
+      "blocks": {
+        "qa_1": {
+          "type": "qa",
+          "settings": {
+            "question": "When are you opening?",
+            "answer": "<p>May 2026, in the heart of Schöneberg, Berlin. <a href=\"#kt-newsletter\">Subscribe to our newsletter</a> and you'll be the first to know the exact date.</p>",
+            "default_open": true
+          }
+        },
+        "qa_2": {
+          "type": "qa",
+          "settings": {
+            "question": "Is there an online shop?",
+            "answer": "<p>Not yet — we're starting with a retail-first store. Click & collect and online sales will follow once the shop is on its feet. We want to do each step properly.</p>"
+          }
+        },
+        "qa_3": {
+          "type": "qa",
+          "settings": {
+            "question": "Where exactly is the store?",
+            "answer": "<p>Belziger Str. 20, 10823 Berlin · Schöneberg — a short walk from Akazienstraße and Bayerischer Platz. <a href=\"https://www.google.com/maps/place/Belziger+Str.+20,+10823+Berlin\">Open in Google Maps</a>.</p>"
+          }
+        },
+        "qa_4": {
+          "type": "qa",
+          "settings": {
+            "question": "Can my brand be stocked?",
+            "answer": "<p><a href=\"/pages/contact\">Use the contact form</a> and tell us about your brand. We read every email.</p>"
+          }
+        },
+        "qa_5": {
+          "type": "qa",
+          "settings": {
+            "question": "Are you hiring?",
+            "answer": "<p>We will be at or around opening time, looking for sales associates. <a href=\"/pages/contact\">Send a note via the contact form</a>.</p>"
+          }
+        }
+      },
+      "block_order": ["qa_1", "qa_2", "qa_3", "qa_4", "qa_5"],
+      "settings": {
+        "eyebrow": "Small questions",
+        "title": "Things people ask us.",
+        "color_scheme": "scheme-brand-cream"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection",
+    "kt_hero",
     "stockist_row",
-    "17649639216ee3a391",
-    "rich_text_wCXVB8"
+    "kt_categories",
+    "kt_story",
+    "kt_newsletter",
+    "kt_visit",
+    "kt_ig",
+    "kt_faq"
   ]
 }

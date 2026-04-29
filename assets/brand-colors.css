@@ -36,6 +36,21 @@
   color: var(--text-light) !important;
 }
 
+.bg-yellow {
+  background-color: #f5d748 !important;
+  color: var(--text-dark) !important;
+}
+
+.bg-green {
+  background-color: #77ae79 !important;
+  color: var(--text-light) !important;
+}
+
+.bg-cream {
+  background-color: #f1eecf !important;
+  color: var(--text-dark) !important;
+}
+
 /* Text Color Utilities */
 .text-dark {
   color: var(--text-dark) !important;

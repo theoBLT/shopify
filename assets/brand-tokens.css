@@ -1,0 +1,358 @@
+/* =============================================================================
+   Kinder Tresor — Brand tokens & utility classes
+   Source of truth for design tokens, mirrored from the design system's
+   colors_and_type.css. Loaded globally via theme.liquid <head>.
+   Scoped tokens are prefixed --kt-* so they don't collide with Shopify's
+   font picker variables (--font-heading-family / --font-body-family).
+   ============================================================================= */
+
+:root {
+  /* Primary palette */
+  --kt-cyan:   #80cedc;
+  --kt-pink:   #eaa4c8;
+  --kt-green:  #77ae79;
+
+  /* Secondary palette */
+  --kt-yellow: #f5d748;
+  --kt-coral:  #ec6563;
+  --kt-orange: #ef9050;
+  --kt-violet: #767ab4;
+  --kt-cream:  #f1eecf;
+
+  /* Neutrals */
+  --kt-cream-light: #f7f5e8;
+  --kt-charcoal:    #2d3436;
+  --kt-black:       #111111;
+  --kt-white:       #ffffff;
+
+  /* Semantic surfaces */
+  --kt-bg-default: var(--kt-cream-light);
+  --kt-bg-soft:    var(--kt-cream);
+  --kt-bg-card:    var(--kt-white);
+  --kt-fg-default: var(--kt-charcoal);
+  --kt-fg-muted:   rgba(45, 52, 54, 0.7);
+  --kt-fg-on-dark: var(--kt-white);
+  --kt-fg-muted-on-dark: rgba(255, 255, 255, 0.7);
+
+  /* Borders & lines */
+  --kt-line:        rgba(45, 52, 54, 0.12);
+  --kt-line-strong: rgba(45, 52, 54, 0.85);
+
+  /* Shadow / elevation */
+  --kt-shadow-card: 0 1px 2px rgba(45, 52, 54, 0.06),
+                    0 4px 16px rgba(45, 52, 54, 0.06);
+  --kt-shadow-pop:  0 6px 24px rgba(45, 52, 54, 0.12);
+
+  /* Radii */
+  --kt-radius-pill: 999px;
+  --kt-radius-lg:   24px;
+  --kt-radius-md:   16px;
+  --kt-radius-sm:   8px;
+
+  /* Spacing scale (4px base) */
+  --kt-space-1: 4px;
+  --kt-space-2: 8px;
+  --kt-space-3: 12px;
+  --kt-space-4: 16px;
+  --kt-space-5: 24px;
+  --kt-space-6: 32px;
+  --kt-space-7: 48px;
+  --kt-space-8: 64px;
+  --kt-space-9: 96px;
+
+  /* Motion */
+  --kt-ease:      cubic-bezier(0.2, 0.8, 0.2, 1);
+  --kt-dur-quick: 140ms;
+  --kt-dur-base:  220ms;
+  --kt-dur-slow:  360ms;
+
+  /* Brand type families — scoped to .kt-* classes; we do NOT override
+     Shopify's --font-heading-family / --font-body-family. */
+  --kt-font-display: "National Park", "Söhne", ui-sans-serif, system-ui, sans-serif;
+  --kt-font-body:    "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale */
+  --kt-display-1: 700 clamp(48px, 7.2vw, 96px) / 1.02 var(--kt-font-display);
+  --kt-display-2: 700 clamp(36px, 5.0vw, 64px) / 1.06 var(--kt-font-display);
+  --kt-h1:        700 clamp(32px, 3.6vw, 48px) / 1.1  var(--kt-font-display);
+  --kt-h2:        600 clamp(26px, 2.6vw, 36px) / 1.15 var(--kt-font-display);
+  --kt-h3:        600 22px/1.25 var(--kt-font-display);
+  --kt-h4:        600 18px/1.3  var(--kt-font-display);
+  --kt-eyebrow:   600 12px/1.2  var(--kt-font-display);
+  --kt-lead:      400 20px/1.5  var(--kt-font-body);
+  --kt-body:      400 16px/1.6  var(--kt-font-body);
+  --kt-body-sm:   400 14px/1.55 var(--kt-font-body);
+  --kt-caption:   400 12px/1.4  var(--kt-font-body);
+  --kt-button:    600 15px/1.0  var(--kt-font-display);
+  --kt-price:     600 18px/1.2  var(--kt-font-display);
+}
+
+/* ========================================================================
+   Section / container primitives
+   ======================================================================== */
+.kt-section { padding: 88px 0; }
+.kt-section-tight { padding: 56px 0; }
+.kt-section-wide  { padding: 120px 0; }
+
+.kt-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 56px;
+  font-family: var(--kt-font-body);
+  color: var(--kt-charcoal);
+}
+
+@media (max-width: 720px) {
+  .kt-section { padding: 56px 0; }
+  .kt-section-wide { padding: 72px 0; }
+  .kt-container { padding: 0 28px; }
+}
+
+.kt-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 720px) {
+  .kt-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.kt-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+
+/* ========================================================================
+   Typography utility classes
+   ======================================================================== */
+.kt-display-1 { font: var(--kt-display-1); letter-spacing: -0.015em; }
+.kt-display-2 { font: var(--kt-display-2); letter-spacing: -0.01em; }
+.kt-eyebrow   { font: var(--kt-eyebrow); letter-spacing: 0.16em; text-transform: uppercase; color: var(--kt-fg-muted); }
+.kt-lead      { font: var(--kt-lead); }
+.kt-body      { font: var(--kt-body); }
+.kt-body-sm   { font: var(--kt-body-sm); }
+.kt-caption   { font: var(--kt-caption); color: var(--kt-fg-muted); }
+
+.kt-eyebrow-strong {
+  font: 600 12px/1 var(--kt-font-display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.kt-eyebrow-strong::before {
+  content: "";
+  width: 28px;
+  height: 1.5px;
+  background: currentColor;
+  opacity: 0.4;
+  display: inline-block;
+}
+
+/* ========================================================================
+   Buttons (pill, 50px radius, 3px border)
+   ======================================================================== */
+.kt-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--kt-radius-pill);
+  border: 3px solid var(--kt-charcoal);
+  background: var(--kt-charcoal);
+  color: var(--kt-white);
+  font: var(--kt-button);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform var(--kt-dur-base) var(--kt-ease),
+              background var(--kt-dur-base) var(--kt-ease),
+              color var(--kt-dur-base) var(--kt-ease);
+  text-decoration: none;
+}
+.kt-button:hover { transform: translateY(-2px); opacity: 1; }
+.kt-button:active { transform: translateY(0); }
+.kt-button:focus-visible { outline: 2px solid var(--kt-charcoal); outline-offset: 3px; }
+
+.kt-button--secondary { background: transparent; color: var(--kt-charcoal); }
+.kt-button--secondary:hover { background: var(--kt-charcoal); color: var(--kt-white); }
+.kt-button--cream { background: var(--kt-cream); border-color: var(--kt-cream); color: var(--kt-charcoal); }
+.kt-button--pink  { background: var(--kt-pink);  border-color: var(--kt-pink);  color: var(--kt-charcoal); }
+.kt-button--cyan  { background: var(--kt-cyan);  border-color: var(--kt-cyan);  color: var(--kt-charcoal); }
+.kt-button--coral { background: var(--kt-coral); border-color: var(--kt-coral); color: var(--kt-white); }
+.kt-button--ghost { background: transparent; border-color: rgba(45, 52, 54, 0.2); color: var(--kt-charcoal); }
+.kt-button--sm    { padding: 8px 16px; font-size: 13px; border-width: 2px; }
+
+.kt-btn-row { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* ========================================================================
+   Inputs / fields
+   ======================================================================== */
+.kt-input-pill {
+  flex: 1;
+  padding: 16px 22px;
+  border-radius: var(--kt-radius-pill);
+  border: 1.5px solid var(--kt-line);
+  font: var(--kt-body);
+  background: #fff;
+  color: var(--kt-charcoal);
+  outline: none;
+  transition: border-color var(--kt-dur-base) var(--kt-ease);
+  min-width: 0;
+}
+.kt-input-pill:focus { border-color: var(--kt-charcoal); }
+.kt-input-pill::placeholder { color: var(--kt-fg-muted); }
+
+/* ========================================================================
+   Marquee (used by stockist row + others)
+   ======================================================================== */
+.kt-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 22px 0;
+  border-top: 1.5px solid var(--kt-line);
+  border-bottom: 1.5px solid var(--kt-line);
+  background: var(--kt-cream-light);
+}
+.kt-marquee .track {
+  display: inline-block;
+  font: 600 18px/1 var(--kt-font-display);
+  letter-spacing: 0.02em;
+}
+.kt-marquee .track span { padding: 0 32px; }
+.kt-marquee .track .sep { color: var(--kt-fg-muted); padding: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .kt-marquee .track { animation: kt-marquee 40s linear infinite; }
+  @keyframes kt-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+}
+
+/* ========================================================================
+   Tag / flag chips
+   ======================================================================== */
+.kt-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--kt-radius-pill);
+  background: rgba(255, 255, 255, 0.85);
+  font: 600 11px/1 var(--kt-font-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.kt-tag .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--kt-coral); }
+
+.kt-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: var(--kt-radius-pill);
+  background: var(--kt-charcoal);
+  color: #fff;
+  font: 600 12px/1 var(--kt-font-display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ========================================================================
+   Hover lift + animations
+   ======================================================================== */
+.lift {
+  transition: transform var(--kt-dur-base) var(--kt-ease),
+              box-shadow var(--kt-dur-base) var(--kt-ease);
+}
+.lift:hover { transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes kt-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-8px) rotate(-1.5deg); }
+  }
+  .kt-float      { animation: kt-float 6s   ease-in-out infinite; }
+  .kt-float-slow { animation: kt-float 9s   ease-in-out infinite; }
+  .kt-float-fast { animation: kt-float 4.5s ease-in-out infinite; }
+
+  @keyframes kt-wave-tilt {
+    0%, 100% { transform: rotate(-3deg); }
+    50%      { transform: rotate(3deg); }
+  }
+  .kt-wave { animation: kt-wave-tilt 3.6s ease-in-out infinite; transform-origin: bottom center; }
+
+  @keyframes kt-pulse {
+    0%   { transform: scale(1);   opacity: 0.5; }
+    100% { transform: scale(3.4); opacity: 0;   }
+  }
+  @keyframes kt-blink {
+    0%   { box-shadow: 0 0 0 0   rgba(236, 101, 99, 0.7); }
+    70%  { box-shadow: 0 0 0 12px rgba(236, 101, 99, 0);   }
+    100% { box-shadow: 0 0 0 0   rgba(236, 101, 99, 0);   }
+  }
+  .kt-blink-dot { animation: kt-blink 2s ease-out infinite; }
+}
+
+/* ========================================================================
+   Inline SVG (Kinbear) wrapper — flex container so the inlined <svg> sizes.
+   The chat documents that <img>-loaded SVGs strip <clipPath>/<style>;
+   inline rendering preserves them.
+   ======================================================================== */
+.kt-inline-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.kt-inline-svg svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+/* ========================================================================
+   Lang pill (header)
+   ======================================================================== */
+.kt-lang {
+  display: inline-flex;
+  background: var(--kt-cream);
+  border: 1.5px solid var(--kt-line);
+  border-radius: 999px;
+  padding: 3px;
+  font: 600 12px/1 var(--kt-font-display);
+  letter-spacing: 0.08em;
+}
+.kt-lang button,
+.kt-lang a {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 7px 13px;
+  border-radius: 999px;
+  color: var(--kt-charcoal);
+  text-decoration: none;
+  transition: background var(--kt-dur-base) var(--kt-ease),
+              color var(--kt-dur-base) var(--kt-ease);
+}
+.kt-lang button.active,
+.kt-lang a[aria-current="true"] {
+  background: var(--kt-charcoal);
+  color: #fff;
+}
+.kt-lang button:focus-visible,
+.kt-lang a:focus-visible {
+  outline: 2px solid var(--kt-charcoal);
+  outline-offset: 2px;
+}
+
+/* ========================================================================
+   Background + text utilities (extending brand-colors.css)
+   ======================================================================== */
+.kt-bg-cream       { background: var(--kt-cream);       color: var(--kt-charcoal); }
+.kt-bg-cream-light { background: var(--kt-cream-light); color: var(--kt-charcoal); }
+.kt-bg-cyan        { background: var(--kt-cyan);        color: var(--kt-charcoal); }
+.kt-bg-pink        { background: var(--kt-pink);        color: var(--kt-charcoal); }
+.kt-bg-yellow      { background: var(--kt-yellow);      color: var(--kt-charcoal); }
+.kt-bg-coral       { background: var(--kt-coral);       color: var(--kt-white);    }
+.kt-bg-green       { background: var(--kt-green);       color: var(--kt-white);    }
+.kt-bg-charcoal    { background: var(--kt-charcoal);    color: var(--kt-white);    }

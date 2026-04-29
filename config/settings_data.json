@@ -326,6 +326,39 @@
           "secondary_button_label": "#ffffff",
           "shadow": "#121212"
         }
+      },
+      "scheme-brand-yellow": {
+        "settings": {
+          "background": "#f5d748",
+          "background_gradient": "",
+          "text": "#2d3436",
+          "button": "#2d3436",
+          "button_label": "#f5d748",
+          "secondary_button_label": "#2d3436",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-brand-green": {
+        "settings": {
+          "background": "#77ae79",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#77ae79",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-brand-cream": {
+        "settings": {
+          "background": "#f1eecf",
+          "background_gradient": "",
+          "text": "#2d3436",
+          "button": "#2d3436",
+          "button_label": "#f1eecf",
+          "secondary_button_label": "#2d3436",
+          "shadow": "#121212"
+        }
       }
     }
   },

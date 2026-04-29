@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "t:custom_content.announcement_bar.homepage",
+            "text": "Curated treasures for little ones — opening May 2026 in Schöneberg, Berlin",
             "link": ""
           }
         }
@@ -29,7 +29,7 @@
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
-        "color_scheme": "scheme-brand-coral",
+        "color_scheme": "scheme-brand-charcoal",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
@@ -38,6 +38,24 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "language_pill": {
+          "type": "language_pill",
+          "settings": {
+            "show_on_desktop": true,
+            "show_on_mobile": false
+          }
+        },
+        "subscribe_cta": {
+          "type": "subscribe_cta",
+          "settings": {
+            "label": "Subscribe",
+            "link": "#kt-newsletter",
+            "style": "solid"
+          }
+        }
+      },
+      "block_order": ["language_pill", "subscribe_cta"],
       "custom_css": [],
       "settings": {
         "logo_position": "middle-left",
@@ -48,8 +66,8 @@
         "show_line_separator": true,
         "color_scheme": "scheme-brand-cream-light",
         "menu_color_scheme": "scheme-brand-cream-light",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "enable_customer_avatar": true,
         "margin_bottom": 0,
         "padding_top": 20,

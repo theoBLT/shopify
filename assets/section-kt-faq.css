@@ -1,0 +1,95 @@
+/* =============================================================================
+   kt-faq — Small questions accordion
+   ============================================================================= */
+
+.kt-faq {
+  font-family: var(--kt-font-body);
+  color: var(--kt-charcoal);
+}
+
+.kt-faq__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 64px;
+  align-items: start;
+}
+@media (max-width: 749px) {
+  .kt-faq__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.kt-faq__head { padding-top: 4px; }
+.kt-faq__eyebrow { margin-bottom: 14px; }
+
+.kt-faq__title {
+  font: var(--kt-display-2);
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--kt-charcoal);
+}
+
+/* ---- Items ---- */
+.kt-faq__list { min-width: 0; }
+
+.kt-faq__item {
+  border-bottom: 1px solid var(--kt-line);
+  padding: 22px 0;
+}
+.kt-faq__item[open] { /* open state styling lives on chev rotation below */ }
+
+/* Hide the default <details> marker */
+.kt-faq__item summary { list-style: none; }
+.kt-faq__item summary::-webkit-details-marker { display: none; }
+
+.kt-faq__q {
+  width: 100%;
+  cursor: pointer;
+  font: 600 19px/1.3 var(--kt-font-display);
+  color: var(--kt-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 0;
+  background: transparent;
+  border: none;
+  gap: 18px;
+}
+.kt-faq__q:focus-visible {
+  outline: 2px solid var(--kt-charcoal);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.kt-faq__q-text { flex: 1; }
+
+.kt-faq__chev {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  border: 1.5px solid var(--kt-line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--kt-dur-base) var(--kt-ease),
+              background var(--kt-dur-base) var(--kt-ease),
+              color var(--kt-dur-base) var(--kt-ease),
+              border-color var(--kt-dur-base) var(--kt-ease);
+  flex-shrink: 0;
+  color: var(--kt-charcoal);
+}
+.kt-faq__item[open] .kt-faq__chev {
+  transform: rotate(45deg);
+  background: var(--kt-charcoal);
+  color: #fff;
+  border-color: var(--kt-charcoal);
+}
+
+.kt-faq__a {
+  font: var(--kt-body);
+  color: rgba(45, 52, 54, 0.78);
+  padding-top: 14px;
+}
+.kt-faq__a p { margin: 0 0 8px; }
+.kt-faq__a p:last-child { margin-bottom: 0; }

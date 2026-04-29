@@ -1,0 +1,211 @@
+/* =============================================================================
+   kt-hero — homepage hero section styles
+   ============================================================================= */
+
+.kt-hero {
+  position: relative;
+  border-bottom: 1.5px solid var(--kt-line);
+  overflow: hidden;
+  font-family: var(--kt-font-body);
+  color: var(--kt-charcoal);
+}
+
+.kt-hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 56px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 899px) {
+  .kt-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+}
+
+/* iPhone landscape (short viewport) — also collapse to single column
+   so the text isn't pinned to a sliver on the left. */
+@media (max-height: 500px) and (max-width: 1100px) {
+  .kt-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 40px;
+    padding-bottom: 28px;
+  }
+  .kt-hero__art { min-height: 280px; }
+  .kt-hero__halo { width: 280px; height: 280px; }
+}
+
+.kt-hero__dots {
+  position: absolute;
+  top: 36px;
+  left: 56px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.kt-hero__text { min-width: 0; }
+
+.kt-hero__eyebrow {
+  margin-bottom: 28px;
+}
+
+.kt-hero__title {
+  font: 700 clamp(52px, 6.8vw, 96px) / 0.98 var(--kt-font-display);
+  letter-spacing: -0.025em;
+  margin: 0 0 26px;
+  color: var(--kt-charcoal);
+}
+
+.kt-hero__title-line-2 {
+  display: inline-block;
+  position: relative;
+}
+.kt-hero__title-line-2 em {
+  font-style: italic;
+  font-weight: 500;
+  font-family: var(--kt-font-display);
+}
+
+.kt-hero__crayon {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 18px;
+  pointer-events: none;
+}
+@media (max-width: 749px) {
+  .kt-hero__crayon { bottom: -14px; }
+}
+
+.kt-hero__sub {
+  font: var(--kt-lead);
+  max-width: 460px;
+  margin: 0 0 28px;
+  color: rgba(45, 52, 54, 0.78);
+}
+.kt-hero__sub p { margin: 0 0 16px; }
+.kt-hero__sub p:last-child { margin-bottom: 0; }
+
+.kt-hero__ctas {
+  margin-bottom: 0;
+}
+
+.kt-hero__foot {
+  margin-top: 32px;
+  padding: 16px 0;
+  border-top: 1.5px dashed rgba(45, 52, 54, 0.32);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  color: var(--kt-charcoal);
+  font-family: var(--kt-font-body);
+}
+.kt-hero__foot span { font-weight: 500; }
+
+/* ---- Right column: art ---- */
+.kt-hero__art {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 480px;
+  isolation: isolate;
+}
+@media (max-width: 749px) {
+  .kt-hero__art { min-height: 360px; }
+}
+
+.kt-hero__halo {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 440px;
+  height: 440px;
+  max-width: 95%;
+  max-height: 95%;
+  border-radius: 999px;
+  background: var(--kt-hero-halo, var(--kt-pink));
+  z-index: 1;
+}
+
+.kt-hero__bear {
+  position: relative;
+  z-index: 2;
+  width: 86%;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto;
+}
+.kt-hero__bear.kt-wave { transform-origin: bottom center; }
+.kt-hero__bear svg,
+.kt-hero__bear img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Date stamp — rotated yellow sticker over the Kinbear */
+.kt-hero__stamp {
+  position: absolute;
+  top: 28px;
+  right: 24px;
+  z-index: 3;
+  width: 96px;
+  height: 96px;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 4px 10px rgba(45, 52, 54, 0.18));
+}
+.kt-hero__stamp-inner {
+  width: 100%; height: 100%;
+  border-radius: 999px;
+  background: var(--kt-hero-stamp-bg, var(--kt-yellow));
+  border: 2.5px solid var(--kt-charcoal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--kt-font-display);
+  color: var(--kt-charcoal);
+  position: relative;
+}
+.kt-hero__stamp-inner::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 999px;
+  border: 1px dashed rgba(45, 52, 54, 0.5);
+  pointer-events: none;
+}
+
+.kt-hero__stamp-month {
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1px;
+  line-height: 1;
+}
+.kt-hero__stamp-day {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin: 1px 0;
+}
+.kt-hero__stamp-year {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-top: 1px;
+}
