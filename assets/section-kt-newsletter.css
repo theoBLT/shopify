@@ -1,0 +1,123 @@
+/* =============================================================================
+   kt-newsletter — design-tone variant of email-signup-banner
+   ============================================================================= */
+
+.kt-newsletter {
+  font-family: var(--kt-font-body);
+  color: var(--kt-charcoal);
+}
+
+.kt-newsletter__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.kt-newsletter--bear-left .kt-newsletter__grid {
+  grid-template-columns: 1fr 1.3fr;
+}
+.kt-newsletter--bear-left .kt-newsletter__art { order: -1; }
+
+@media (max-width: 749px) {
+  .kt-newsletter__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .kt-newsletter--bear-left .kt-newsletter__grid {
+    grid-template-columns: 1fr;
+  }
+  .kt-newsletter--bear-left .kt-newsletter__art { order: 0; }
+}
+
+.kt-newsletter__eyebrow { margin-bottom: 14px; }
+
+.kt-newsletter__title {
+  font: var(--kt-display-2);
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  color: var(--kt-charcoal);
+  max-width: 480px;
+}
+
+.kt-newsletter__sub {
+  font: var(--kt-lead);
+  margin: 0 0 26px;
+  max-width: 460px;
+  color: rgba(45, 52, 54, 0.78);
+}
+.kt-newsletter__sub p { margin: 0 0 12px; }
+
+.kt-newsletter__form-wrap {
+  max-width: 480px;
+}
+
+.kt-newsletter__field-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kt-newsletter__input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.kt-newsletter__msg {
+  display: block;
+  margin-top: 12px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.kt-newsletter__msg--error {
+  color: #b32d2c;
+}
+.kt-newsletter__msg--success {
+  background: var(--kt-charcoal);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: var(--kt-radius-pill);
+  font: 600 12px/1 var(--kt-font-display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.kt-newsletter__msg--success::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--kt-yellow);
+}
+
+.kt-newsletter__hint {
+  margin-top: 14px;
+  font-size: 13px;
+  color: rgba(45, 52, 54, 0.6);
+  max-width: 460px;
+}
+
+/* ---- Right column: Kinbear art ---- */
+.kt-newsletter__art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kt-newsletter__bear,
+.kt-newsletter__art img,
+.kt-newsletter__art .kt-inline-svg {
+  width: var(--kt-newsletter-bear-size, 85%);
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kt-newsletter__art .kt-inline-svg svg,
+.kt-newsletter__art img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

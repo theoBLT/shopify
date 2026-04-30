@@ -1,0 +1,199 @@
+{%- comment -%}
+  KT Categories — "What we curate" 4-up grid of named-Kinbear cards.
+  Each card is a repeating block, so Dina can add/remove/reorder.
+  Uses kt-image snippet to inline category SVGs (clipPath + style preserved).
+{%- endcomment -%}
+
+{{ 'section-kt-categories.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sec = section.settings
+-%}
+
+<section
+  class="kt-section kt-cats color-{{ sec.color_scheme }} gradient"
+  aria-labelledby="kt-cats-title-{{ section.id }}">
+  {%- if sec.corner_motif_visible -%}
+    <div class="kt-cats__corner" aria-hidden="true">
+      <svg width="120" height="120" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.18">
+          <circle cx="50" cy="50" r="32" />
+          <circle cx="50" cy="50" r="22" />
+          <circle cx="50" cy="50" r="12" stroke-dasharray="2 3" />
+        </g>
+      </svg>
+    </div>
+  {%- endif -%}
+
+  <div class="kt-container kt-cats__inner">
+    <header class="kt-cats__head">
+      {%- if sec.eyebrow != blank -%}
+        <div class="kt-eyebrow-strong kt-cats__eyebrow">{{ sec.eyebrow }}</div>
+      {%- endif -%}
+      {%- if sec.title != blank -%}
+        <h2 id="kt-cats-title-{{ section.id }}" class="kt-cats__title">{{ sec.title }}</h2>
+      {%- endif -%}
+      {%- if sec.subtitle != blank -%}
+        <p class="kt-cats__sub">{{ sec.subtitle }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="kt-grid-4 kt-cats__grid">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign idx = forloop.index | prepend: '00' | slice: -2, 2
+            assign bg = block.settings.bg_color | default: 'yellow'
+            assign anim = block.settings.animation | default: 'float'
+            assign anim_class = ''
+            if anim == 'float'
+              assign anim_class = 'kt-float'
+            elsif anim == 'float_slow'
+              assign anim_class = 'kt-float-slow'
+            endif
+            assign fallback = 'kinbear-cat0' | append: forloop.index | append: '-fixed.svg'
+          -%}
+          {%- capture card_classes -%}kt-cats__card kt-bg-{{ bg }} lift{%- endcapture -%}
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="{{ card_classes }}" {{ block.shopify_attributes }}>
+          {%- else -%}
+            <div class="{{ card_classes }}" {{ block.shopify_attributes }}>
+          {%- endif -%}
+            <span class="kt-cats__num" aria-hidden="true">{{ idx }}</span>
+            <div class="kt-cats__bear-wrap">
+              {% render 'kt-image',
+                  image: block.settings.bear_image,
+                  inline_asset_fallback: fallback,
+                  class: anim_class,
+                  alt: block.settings.name,
+                  width: 200,
+                  height: 220,
+                  loading: 'lazy' %}
+            </div>
+            <div class="kt-cats__meta">
+              {%- if block.settings.name != blank -%}
+                <div class="kt-cats__name">{{ block.settings.name }}</div>
+              {%- endif -%}
+            </div>
+          {%- if block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KT Categories",
+  "tag": "section",
+  "class": "section section-kt-categories",
+  "enabled_on": { "templates": ["index", "page"] },
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "What we curate"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Meet the keepers of the vault."
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Each corner of the store has a small custodian. Tap to peek inside.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Decoration"
+    },
+    {
+      "type": "checkbox",
+      "id": "corner_motif_visible",
+      "label": "Show corner concentric-circles motif",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section color scheme",
+      "default": "scheme-brand-cream-light"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_card",
+      "name": "Category card",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bear_image",
+          "label": "Kinbear image",
+          "info": "Defaults to the matching brand Kinbear shipped with the theme."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Category name",
+          "default": "Apparel"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "bg_color",
+          "label": "Background color",
+          "options": [
+            { "value": "yellow", "label": "Yellow" },
+            { "value": "pink",   "label": "Pink" },
+            { "value": "cyan",   "label": "Cyan" },
+            { "value": "green",  "label": "Green" },
+            { "value": "cream",  "label": "Cream" },
+            { "value": "coral",  "label": "Coral" }
+          ],
+          "default": "yellow"
+        },
+        {
+          "type": "select",
+          "id": "animation",
+          "label": "Bear animation",
+          "options": [
+            { "value": "float",      "label": "Float" },
+            { "value": "float_slow", "label": "Float (slow)" },
+            { "value": "none",       "label": "None" }
+          ],
+          "default": "float"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories (Kinder Tresor)",
+      "blocks": [
+        { "type": "category_card", "settings": { "name": "Apparel", "bg_color": "yellow", "animation": "float",      "link": "/collections/apparel" } },
+        { "type": "category_card", "settings": { "name": "Toys",    "bg_color": "pink",   "animation": "float_slow", "link": "/collections/toys" } },
+        { "type": "category_card", "settings": { "name": "Books",   "bg_color": "cyan",   "animation": "float",      "link": "/collections/books" } },
+        { "type": "category_card", "settings": { "name": "Gifts",   "bg_color": "green",  "animation": "float_slow", "link": "/collections/gifts" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

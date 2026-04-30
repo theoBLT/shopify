@@ -1,0 +1,326 @@
+{%- comment -%}
+  KT Visit — address + hours + REAL map.
+  Map provider is selectable per Dina's preference:
+    osm           → OpenStreetMap iframe embed (default; no API key, GDPR-clean)
+    mapbox_static → Mapbox Static Images API <img> (token required)
+    google_embed  → Google Maps embed iframe with click-to-load wrapper (sets cookies)
+  Coordinates default to Belziger Str. 20, 10823 Berlin (Schöneberg).
+{%- endcomment -%}
+
+{{ 'section-kt-visit.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sec = section.settings
+
+  for b in section.blocks
+    if b.type == 'map'
+      assign map_block = b
+    endif
+  endfor
+
+-%}
+
+<section
+  class="kt-section kt-visit color-{{ sec.color_scheme }} gradient"
+  aria-labelledby="kt-visit-title-{{ section.id }}">
+  <div class="kt-container kt-visit__grid">
+
+    <div class="kt-visit__side">
+      {%- if sec.eyebrow != blank -%}
+        <div class="kt-eyebrow-strong kt-visit__eyebrow">{{ sec.eyebrow }}</div>
+      {%- endif -%}
+      {%- if sec.title != blank -%}
+        <h2 id="kt-visit-title-{{ section.id }}" class="kt-visit__title">{{ sec.title }}</h2>
+      {%- endif -%}
+      {%- if sec.subtitle != blank -%}
+        <div class="kt-visit__sub">{{ sec.subtitle }}</div>
+      {%- endif -%}
+
+      <div class="kt-visit__meta">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'info' -%}
+            <div class="kt-visit__meta-row" {{ block.shopify_attributes }}>
+              {%- if block.settings.label != blank -%}
+                <div class="kt-visit__label">{{ block.settings.label }}</div>
+              {%- endif -%}
+              {%- if block.settings.value_strong != blank -%}
+                <div class="kt-visit__strong">{{ block.settings.value_strong }}</div>
+              {%- endif -%}
+              {%- if block.settings.value_extra_lines != blank -%}
+                <div class="kt-visit__extra">{{ block.settings.value_extra_lines }}</div>
+              {%- endif -%}
+              {%- if block.settings.value_note != blank -%}
+                <div class="kt-visit__note">{{ block.settings.value_note }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if map_block.settings.directions_url != blank and map_block.settings.directions_label != blank -%}
+        <div class="kt-visit__cta-row">
+          <a class="kt-button kt-button--secondary" href="{{ map_block.settings.directions_url }}"
+             target="_blank" rel="noopener noreferrer">
+            {{ map_block.settings.directions_label }} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if map_block != blank -%}
+      <div class="kt-visit__map" {{ map_block.shopify_attributes }}>
+        {%- liquid
+          assign provider = map_block.settings.provider | default: 'osm'
+          assign lat = map_block.settings.latitude | default: '52.4895'
+          assign lon = map_block.settings.longitude | default: '13.3477'
+          assign zoom = map_block.settings.zoom | default: 16
+          assign pin_label = map_block.settings.pin_label | default: 'Belziger Str. 20'
+          assign pad_thousandths = map_block.settings.bbox_padding_thousandths | default: 5
+          assign pad = pad_thousandths | times: 0.001
+          assign minlon = lon | times: 1.0 | minus: pad
+          assign minlat = lat | times: 1.0 | minus: pad
+          assign maxlon = lon | times: 1.0 | plus: pad
+          assign maxlat = lat | times: 1.0 | plus: pad
+        -%}
+
+        {%- case provider -%}
+          {%- when 'osm' -%}
+            <iframe class="kt-visit__map-iframe"
+              src="https://www.openstreetmap.org/export/embed.html?bbox={{ minlon }}%2C{{ minlat }}%2C{{ maxlon }}%2C{{ maxlat }}&layer=mapnik&marker={{ lat }}%2C{{ lon }}"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Map of {{ pin_label | escape }}"></iframe>
+
+          {%- when 'mapbox_static' -%}
+            {%- if map_block.settings.mapbox_token != blank -%}
+              <img class="kt-visit__map-static" loading="lazy" decoding="async"
+                width="800" height="500"
+                alt="Map of {{ pin_label | escape }}"
+                src="https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-l-shop+ec6563({{ lon }},{{ lat }})/{{ lon }},{{ lat }},{{ zoom }},0/800x500@2x?access_token={{ map_block.settings.mapbox_token }}">
+            {%- else -%}
+              <div class="kt-visit__map-fallback">
+                <p>Mapbox provider selected but no token configured.</p>
+                <p>Add a Mapbox public token in the Visit section's Map block, or switch the provider to OpenStreetMap.</p>
+              </div>
+            {%- endif -%}
+
+          {%- when 'google_embed' -%}
+            <div class="kt-visit__map-google" data-pending="true">
+              <button type="button" class="kt-button kt-button--sm kt-visit__map-load" data-load-google
+                aria-label="Load Google Map — this loads cookies from Google.">
+                Load Google Map
+              </button>
+              <noscript>
+                <a href="{{ map_block.settings.directions_url }}" target="_blank" rel="noopener noreferrer">
+                  Open map of {{ pin_label | escape }} on Google Maps
+                </a>
+              </noscript>
+              <template>
+                <iframe class="kt-visit__map-iframe"
+                  src="https://www.google.com/maps/embed/v1/place?q={{ lat }},{{ lon }}&zoom={{ zoom }}"
+                  loading="lazy"
+                  title="Map of {{ pin_label | escape }}"></iframe>
+              </template>
+            </div>
+        {%- endcase -%}
+
+        {%- if pin_label != blank -%}
+          <div class="kt-visit__pin-label" aria-hidden="true">{{ pin_label | escape }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- assign google_blocks = 0 -%}
+  {%- for b in section.blocks -%}
+    {%- if b.type == 'map' and b.settings.provider == 'google_embed' -%}
+      {%- assign google_blocks = google_blocks | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if google_blocks > 0 -%}
+    <script src="{{ 'kt-visit.js' | asset_url }}" defer></script>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Visit (Kinder Tresor)",
+  "tag": "section",
+  "class": "section section-kt-visit",
+  "enabled_on": { "templates": ["index", "page"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Visit"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Come and see us."
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Tucked into a quiet corner of Schöneberg — five minutes from Bayerischer Platz and the Akazienstraße.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-brand-cream-light"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "map",
+      "name": "Map",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "provider",
+          "label": "Map provider",
+          "info": "OpenStreetMap (default) is GDPR-clean and needs no API key. Mapbox needs a public token but offers branded styling. Google sets cookies on load and requires a click-to-consent wrapper.",
+          "options": [
+            { "value": "osm",           "label": "OpenStreetMap (recommended)" },
+            { "value": "mapbox_static", "label": "Mapbox (needs token)" },
+            { "value": "google_embed",  "label": "Google Maps (click-to-load)" }
+          ],
+          "default": "osm"
+        },
+        {
+          "type": "text",
+          "id": "latitude",
+          "label": "Latitude",
+          "info": "Decimal degrees, e.g. 52.4895 for Belziger Str. 20.",
+          "default": "52.4895"
+        },
+        {
+          "type": "text",
+          "id": "longitude",
+          "label": "Longitude",
+          "info": "Decimal degrees, e.g. 13.3477 for Belziger Str. 20.",
+          "default": "13.3477"
+        },
+        {
+          "type": "range",
+          "id": "zoom",
+          "label": "Zoom",
+          "min": 10, "max": 18, "step": 1,
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "bbox_padding_thousandths",
+          "label": "OSM bounding-box padding",
+          "info": "× 0.001 — higher = more zoomed-out OSM view. Only affects OpenStreetMap. e.g. 5 = 0.005°.",
+          "min": 1, "max": 20, "step": 1, "unit": "‰",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "pin_label",
+          "label": "Pin label",
+          "default": "Belziger Str. 20"
+        },
+        {
+          "type": "url",
+          "id": "directions_url",
+          "label": "Directions URL",
+          "info": "Where the directions button opens (defaults to Google Maps for the address)."
+        },
+        {
+          "type": "text",
+          "id": "directions_label",
+          "label": "Directions button label",
+          "default": "Get directions"
+        },
+        {
+          "type": "text",
+          "id": "mapbox_token",
+          "label": "Mapbox public access token",
+          "info": "Only used when provider is Mapbox. Public tokens (pk.*) are safe to expose."
+        }
+      ]
+    },
+    {
+      "type": "info",
+      "name": "Address / hours row",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Address"
+        },
+        {
+          "type": "text",
+          "id": "value_strong",
+          "label": "Strong line",
+          "default": "Kinder Tresor"
+        },
+        {
+          "type": "richtext",
+          "id": "value_extra_lines",
+          "label": "Extra lines",
+          "default": "<p>Belziger Str. 20<br>10823 Berlin · Schöneberg</p>"
+        },
+        {
+          "type": "text",
+          "id": "value_note",
+          "label": "Note (italic muted)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Visit (Kinder Tresor)",
+      "blocks": [
+        {
+          "type": "map",
+          "settings": {
+            "provider": "osm",
+            "latitude": "52.4895",
+            "longitude": "13.3477",
+            "zoom": 16,
+            "bbox_padding_thousandths": 5,
+            "pin_label": "Belziger Str. 20",
+            "directions_url": "https://www.google.com/maps/place/Belziger+Str.+20,+10823+Berlin",
+            "directions_label": "Get directions"
+          }
+        },
+        {
+          "type": "info",
+          "settings": {
+            "label": "Address",
+            "value_strong": "Kinder Tresor",
+            "value_extra_lines": "<p>Belziger Str. 20<br>10823 Berlin · Schöneberg</p>"
+          }
+        },
+        {
+          "type": "info",
+          "settings": {
+            "label": "Hours",
+            "value_strong": "Tuesday — Saturday · 10:30 — 18:30",
+            "value_note": "Opening: May 2026"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

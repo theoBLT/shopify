@@ -1,0 +1,95 @@
+/* =============================================================================
+   kt-footer-overrides — restyles the existing footer.liquid output.
+   When the merchant uses scheme-brand-charcoal, render in the design's dark
+   variant (charcoal bg, cream text, 11px uppercase column headings).
+   ============================================================================= */
+
+.footer.color-scheme-brand-charcoal {
+  font-family: var(--kt-font-body, "Bricolage Grotesque", system-ui, sans-serif);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Column headings — 11px uppercase 0.2em letter-spacing */
+.footer.color-scheme-brand-charcoal .footer-block__heading,
+.footer.color-scheme-brand-charcoal .footer-block__heading.inline-richtext {
+  font: 600 11px/1 var(--kt-font-display, "National Park", system-ui, sans-serif);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 18px;
+}
+
+.footer.color-scheme-brand-charcoal .footer-block__details-content,
+.footer.color-scheme-brand-charcoal .footer-block__details-content a {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.footer.color-scheme-brand-charcoal .footer-block__details-content a:hover {
+  color: #fff;
+}
+
+.footer.color-scheme-brand-charcoal ul.list-unstyled li {
+  margin-bottom: 10px;
+}
+
+/* Bottom row */
+.footer.color-scheme-brand-charcoal .footer__copyright {
+  color: rgba(255, 255, 255, 0.55);
+  font: 400 12px/1.4 var(--kt-font-body, "Bricolage Grotesque", system-ui, sans-serif);
+}
+.footer.color-scheme-brand-charcoal .footer__copyright .copyright__content {
+  font-size: 12px;
+}
+.footer.color-scheme-brand-charcoal .footer__copyright a {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+}
+.footer.color-scheme-brand-charcoal .footer__copyright a:hover {
+  color: #fff;
+}
+
+/* Separator above the bottom row */
+.footer.color-scheme-brand-charcoal .footer__content-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 8px;
+}
+
+/* Brand block — logo + tagline */
+.footer.color-scheme-brand-charcoal .footer-block--brand-information img {
+  max-height: 60px;
+  width: auto;
+  margin-bottom: 16px;
+}
+.footer.color-scheme-brand-charcoal .footer-block--brand-information .rte,
+.footer.color-scheme-brand-charcoal .footer-block--brand-information p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 280px;
+  line-height: 1.55;
+}
+
+/* Social icons in pill-outline circles */
+.footer.color-scheme-brand-charcoal .list-social__link {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  margin-right: 8px;
+}
+.footer.color-scheme-brand-charcoal .list-social__link svg {
+  width: 18px; height: 18px;
+}
+.footer.color-scheme-brand-charcoal .list-social__link:hover {
+  border-color: #fff;
+  color: #fff;
+}
+.footer.color-scheme-brand-charcoal .list-social__link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}

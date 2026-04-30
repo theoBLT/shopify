@@ -1,0 +1,156 @@
+{%- comment -%}
+  KT Story — editorial 2-col with a rotated framed Kinbear and pull-quote text.
+  Replaces the homepage rich-text block. Default copy mirrors the existing
+  Kinder Tresor "Our Story" body verbatim — Dina edits via richtext setting.
+{%- endcomment -%}
+
+{{ 'section-kt-story.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sec = section.settings
+  assign rotation = sec.frame_rotation | default: -1.5
+-%}
+
+{%- style -%}
+  #kt-story-{{ section.id }} .kt-story__frame-inner {
+    transform: rotate({{ rotation }}deg);
+  }
+  #kt-story-{{ section.id }} .kt-story__frame-inner::before {
+    background: {{ sec.tape_color | default: '#ec6563' }}99;
+  }
+{%- endstyle -%}
+
+<section
+  id="kt-story-{{ section.id }}"
+  class="kt-section kt-story color-{{ sec.color_scheme }} gradient"
+  aria-labelledby="kt-story-title-{{ section.id }}">
+  <div class="kt-container kt-story__grid">
+    <figure class="kt-story__frame">
+      <div class="kt-story__frame-inner">
+        {% render 'kt-image',
+            image: sec.frame_image,
+            inline_asset_fallback: 'kinbear-story.svg',
+            class: '',
+            alt: sec.frame_caption,
+            width: 280,
+            height: 320,
+            loading: 'lazy' %}
+      </div>
+      {%- if sec.frame_caption != blank -%}
+        <figcaption class="kt-story__frame-caption">{{ sec.frame_caption }}</figcaption>
+      {%- endif -%}
+    </figure>
+
+    <div class="kt-story__text">
+      {%- if sec.eyebrow != blank -%}
+        <div class="kt-eyebrow-strong kt-story__eyebrow">{{ sec.eyebrow }}</div>
+      {%- endif -%}
+      {%- if sec.heading != blank -%}
+        <h2 id="kt-story-title-{{ section.id }}" class="kt-story__title">{{ sec.heading }}</h2>
+      {%- endif -%}
+      {%- if sec.body != blank -%}
+        <div class="kt-story__body">{{ sec.body }}</div>
+      {%- endif -%}
+      {%- if sec.cta_label != blank -%}
+        <a href="{{ sec.cta_link | default: '#' }}" class="kt-button kt-button--secondary kt-story__cta">
+          {{ sec.cta_label }}
+          {%- if sec.cta_arrow -%} <span aria-hidden="true">→</span>{%- endif -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KT What we stand for",
+  "tag": "section",
+  "class": "section section-kt-story",
+  "enabled_on": { "templates": ["index", "page"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Copy"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our story"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We believe in the magic of childhood."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.</p><p>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in May 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Let's Collaborate"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_arrow",
+      "label": "Show arrow on CTA",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Frame"
+    },
+    {
+      "type": "image_picker",
+      "id": "frame_image",
+      "label": "Frame image",
+      "info": "Defaults to The Cosy One Kinbear shipped with the theme."
+    },
+    {
+      "type": "text",
+      "id": "frame_caption",
+      "label": "Frame caption (italic)",
+      "default": "Tresor — our resident Kinbear"
+    },
+    {
+      "type": "range",
+      "id": "frame_rotation",
+      "label": "Frame rotation",
+      "min": -3, "max": 3, "step": 0.5,
+      "default": -1.5, "unit": "°"
+    },
+    {
+      "type": "color",
+      "id": "tape_color",
+      "label": "Tape color",
+      "default": "#ec6563"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-brand-cream"
+    }
+  ],
+  "presets": [
+    {
+      "name": "What we stand for (Kinder Tresor)"
+    }
+  ]
+}
+{% endschema %}

@@ -282,6 +282,34 @@
         {%- case block.type -%}
           {%- when '@app' -%}
             {% render block %}
+          {%- when 'language_pill' -%}
+            {%- if localization.available_languages.size > 1 -%}
+              <div class="kt-lang kt-lang--header
+                  {% if block.settings.show_on_desktop == false %} small-up-hide{% endif %}
+                  {% if block.settings.show_on_mobile == false %} small-hide{% endif %}"
+                  {{ block.shopify_attributes }}>
+                {%- for lang in localization.available_languages -%}
+                  <a href="{{ lang.root_url }}"
+                     hreflang="{{ lang.iso_code }}"
+                     {% if lang.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                    {{ lang.iso_code | upcase }}
+                  </a>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          {%- when 'subscribe_cta' -%}
+            {%- liquid
+              assign btn_style = block.settings.style | default: 'solid'
+              assign btn_class = 'kt-button kt-button--sm'
+              if btn_style == 'ghost'
+                assign btn_class = btn_class | append: ' kt-button--ghost'
+              endif
+            -%}
+            <a href="{{ block.settings.link | default: '#kt-newsletter' }}"
+               class="{{ btn_class }} kt-header__subscribe"
+               {{ block.shopify_attributes }}>
+              {{ block.settings.label | default: 'Subscribe' }}
+            </a>
         {%- endcase -%}
       {%- endfor -%}
 
@@ -652,6 +680,58 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "subscribe_cta",
+      "name": "Subscribe button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Subscribe"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Defaults to the newsletter section anchor (#kt-newsletter)."
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "solid", "label": "Solid (charcoal)" },
+            { "value": "ghost", "label": "Ghost (outline)" }
+          ],
+          "default": "solid"
+        }
+      ]
+    },
+    {
+      "type": "language_pill",
+      "name": "Language pill (EN/DE)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_on_desktop",
+          "label": "Show on desktop",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_on_mobile",
+          "label": "Show on mobile",
+          "default": false
+        },
+        {
+          "type": "paragraph",
+          "content": "Renders one button per language enabled in Shopify Markets. Only visible when more than one language is available."
+        }
+      ]
     }
   ]
 }

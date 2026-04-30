@@ -1,0 +1,81 @@
+/* =============================================================================
+   kt-ig-strip — Instagram tile strip
+   ============================================================================= */
+
+.kt-ig {
+  font-family: var(--kt-font-body);
+  color: var(--kt-charcoal);
+}
+
+.kt-ig__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.kt-ig__eyebrow { margin-bottom: 10px; }
+
+.kt-ig__title {
+  font: var(--kt-h1);
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--kt-charcoal);
+}
+
+.kt-ig__grid {
+  display: grid;
+  gap: 6px;
+}
+
+.kt-ig__tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--kt-dur-base) var(--kt-ease);
+}
+.kt-ig__tile:hover { transform: translateY(-2px); }
+.kt-ig__tile:focus-visible { outline: 2px solid var(--kt-charcoal); outline-offset: 3px; }
+
+.kt-ig__tile img,
+.kt-ig__tile .kt-inline-svg {
+  width: 70%;
+  max-width: 70%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kt-ig__tile .kt-inline-svg svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.kt-ig__icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--kt-dur-base) var(--kt-ease);
+  color: var(--kt-charcoal);
+}
+.kt-ig__tile:hover .kt-ig__icon,
+.kt-ig__tile:focus-visible .kt-ig__icon { opacity: 1; }
