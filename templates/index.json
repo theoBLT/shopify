@@ -49,23 +49,7 @@
     },
     "stockist_row": {
       "type": "stockist-row",
-      "settings": {
-        "brands_row_1": "Petit Bateau, Konges Sløjd, Arsène et les Pipelettes, VEJA, Mini Rodini, Maison Mangostan, Liewood, Halcyon Nights, Moulin Roty, Wooly Organic",
-        "brands_row_2": "SCOTCH & SODA, Londji, American Vintage, Goldie and Ace, Le Toy Van, Favorite People, Flöss Aps, MP, Rockahulla, GOMMU",
-        "speed_seconds": 75,
-        "edge_fade_px": 100,
-        "font_size_desktop": 30,
-        "font_size_tablet": 24,
-        "font_size_mobile": 20,
-        "letter_spacing_thousandths": 10,
-        "separator": "middot",
-        "row_gap_em": 1.5,
-        "item_gap_em": 0.6,
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "color_scheme": "",
-        "accessible_heading": "Our stockists"
-      }
+      "settings": {}
     },
     "kt_categories": {
       "type": "kt-categories",
@@ -175,7 +159,6 @@
         "kinbear_size": 85,
         "kinbear_alignment": "right",
         "show_background_image": false,
-        "image_overlay_opacity": 0,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
@@ -192,12 +175,12 @@
           "type": "map",
           "settings": {
             "provider": "osm",
-            "latitude": "52.4895",
-            "longitude": "13.3477",
+            "latitude": "52.4874144",
+            "longitude": "13.3540601",
             "zoom": 16,
             "bbox_padding_thousandths": 5,
             "pin_label": "Belziger Str. 20",
-            "directions_url": "https://www.google.com/maps/place/Belziger+Str.+20,+10823+Berlin",
+            "directions_url": "https://maps.app.goo.gl/WbDtsMoZtGav4CAz7",
             "directions_label": "Get directions",
             "mapbox_token": ""
           }
@@ -207,8 +190,7 @@
           "settings": {
             "label": "Address",
             "value_strong": "Kinder Tresor",
-            "value_extra_lines": "<p>Belziger Str. 20</p><p>10823 Berlin · Schöneberg</p>",
-            "value_note": ""
+            "value_extra_lines": "<p>Belziger Str. 20</p><p>10823 Berlin · Schöneberg</p>"
           }
         },
         "info_hours": {
@@ -241,7 +223,6 @@
           "settings": {
             "inline_asset": "kinbear-blue-real.svg",
             "bg_color": "pink",
-            "link": "",
             "aria_label": "Open Instagram"
           }
         },
@@ -250,7 +231,6 @@
           "settings": {
             "inline_asset": "kinbear-cat01-fixed.svg",
             "bg_color": "cream",
-            "link": "",
             "aria_label": "Open Instagram"
           }
         },
@@ -259,7 +239,6 @@
           "settings": {
             "inline_asset": "kinbear-cat02-fixed.svg",
             "bg_color": "cyan",
-            "link": "",
             "aria_label": "Open Instagram"
           }
         },
@@ -268,7 +247,6 @@
           "settings": {
             "inline_asset": "kinbear-story.svg",
             "bg_color": "yellow",
-            "link": "",
             "aria_label": "Open Instagram"
           }
         },
@@ -277,7 +255,6 @@
           "settings": {
             "inline_asset": "kinbear-cat03-fixed.svg",
             "bg_color": "coral",
-            "link": "",
             "aria_label": "Open Instagram"
           }
         },
@@ -286,7 +263,6 @@
           "settings": {
             "inline_asset": "kinbear-cat04-fixed.svg",
             "bg_color": "green",
-            "link": "",
             "aria_label": "Open Instagram"
           }
         }
@@ -299,45 +275,14 @@
         "tile_5",
         "tile_6"
       ],
-      "custom_css": [],
       "settings": {
         "eyebrow": "On the gram",
         "title": "@kindertresor",
         "cta_label": "Follow along",
         "cta_link": "https://instagram.com/kindertresor",
-        "show_tile_grid": false,
         "tile_columns_desktop": 6,
         "tile_columns_mobile": 2,
         "color_scheme": "scheme-brand-cream-light"
-      }
-    },
-    "17775568351749b83f": {
-      "type": "apps",
-      "blocks": {
-        "instafeed_app_block_JJRxiE": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
-          "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
-            "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 32,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "#f7f5e8",
-            "feed_id": "",
-            "html_area": "<style>\n    /* Match kt-ig-strip placeholder tile look */\n    [class*=\"instafeed\"],\n    [class*=\"instafeed\"] > *,\n    [class*=\"instafeed\"] a,\n    [class*=\"instafeed\"] img,\n    [class*=\"instafeed\"] picture,\n    [class*=\"instafeed\"] [class*=\"item\"],\n    [class*=\"instafeed\"] [class*=\"tile\"] {\n      border-radius: 14px !important;\n    }\n\n    [class*=\"instafeed\"] a,\n    [class*=\"instafeed\"] [class*=\"item\"],\n    [class*=\"instafeed\"] [class*=\"tile\"] {\n      overflow: hidden !important;\n    }\n\n    /* Hover overlay (pseudo-element or div sibling) — match tile radius */\n    [class*=\"instafeed\"] a::before,\n    [class*=\"instafeed\"] a::after,\n    [class*=\"instafeed\"] [class*=\"overlay\"],\n    [class*=\"instafeed\"] [class*=\"hover\"] {\n      border-radius: 14px !important;\n    }\n\n    /* Hide slider controls bleeding over the last tile's right edge */\n    [class*=\"instafeed\"] [class*=\"arrow\"],\n    [class*=\"instafeed\"] [class*=\"next\"],\n    [class*=\"instafeed\"] [class*=\"prev\"],\n    [class*=\"instafeed\"] [class*=\"control\"],\n    [class*=\"instafeed\"] [class*=\"nav\"],\n    [class*=\"instafeed\"] button {\n      display: none !important;\n    }\n\n    /* Hover lift */\n    [class*=\"instafeed\"] a {\n      transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);\n    }\n    [class*=\"instafeed\"] a:hover { transform: translateY(-2px); }\n  </style>"
-          }
-        }
-      },
-      "block_order": [
-        "instafeed_app_block_JJRxiE"
-      ],
-      "settings": {
-        "include_margins": true
       }
     },
     "kt_faq": {
@@ -355,32 +300,28 @@
           "type": "qa",
           "settings": {
             "question": "Is there an online shop?",
-            "answer": "<p>Not yet — we're starting with a retail-first store. Click & collect and online sales will follow once the shop is on its feet. We want to do each step properly.</p>",
-            "default_open": false
+            "answer": "<p>Not yet — we're starting with a retail-first store. Click & collect and online sales will follow once the shop is on its feet. We want to do each step properly.</p>"
           }
         },
         "qa_3": {
           "type": "qa",
           "settings": {
             "question": "Where exactly is the store?",
-            "answer": "<p>Belziger Str. 20, 10823 Berlin · Schöneberg — a short walk from Akazienstraße and Bayerischer Platz. <a href=\"https://www.google.com/maps/place/Belziger+Str.+20,+10823+Berlin\">Open in Google Maps</a>.</p>",
-            "default_open": false
+            "answer": "<p>Belziger Str. 20, 10823 Berlin · Schöneberg — a short walk from Akazienstraße and Bayerischer Platz. <a href=\"https://maps.app.goo.gl/WbDtsMoZtGav4CAz7\">Open in Google Maps</a>.</p>"
           }
         },
         "qa_4": {
           "type": "qa",
           "settings": {
             "question": "Can my brand be stocked?",
-            "answer": "<p><a href=\"/pages/contact\">Use the contact form</a> and tell us about your brand. We read every email.</p>",
-            "default_open": false
+            "answer": "<p><a href=\"/pages/contact\">Use the contact form</a> and tell us about your brand. We read every email.</p>"
           }
         },
         "qa_5": {
           "type": "qa",
           "settings": {
             "question": "Are you hiring?",
-            "answer": "<p>We will be at or around opening time, looking for sales associates. <a href=\"/pages/contact\">Send a note via the contact form</a>.</p>",
-            "default_open": false
+            "answer": "<p>We will be at or around opening time, looking for sales associates. <a href=\"/pages/contact\">Send a note via the contact form</a>.</p>"
           }
         }
       },
@@ -406,7 +347,6 @@
     "kt_newsletter",
     "kt_visit",
     "kt_ig",
-    "17775568351749b83f",
     "kt_faq"
   ]
 }
