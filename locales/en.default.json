@@ -577,6 +577,9 @@
     "newsletter": {
       "heading": "Be the First to Discover Our Treasures",
       "text": "<p>We're getting ready to launch something special from Berlin. Join our early access list for updates and curated surprises.</p>"
+    },
+    "kt_footer": {
+      "copyright": "© 2026 Kinder Tresor — Made with care in Berlin."
     }
   }
 }

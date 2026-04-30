@@ -299,12 +299,18 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
-        {%- if section.settings.kt_copyright_override != blank -%}
-          <small class="copyright__content">{{ section.settings.kt_copyright_override }}</small>
+        {%- liquid
+          assign kt_override = section.settings.kt_copyright_override
+          # Treat the literal default string as "not overridden" so the locale
+          # lookup wins (otherwise EN renders on /de/).
+          if kt_override == "© 2026 Kinder Tresor — Made with care in Berlin."
+            assign kt_override = blank
+          endif
+        -%}
+        {%- if kt_override != blank -%}
+          <small class="copyright__content">{{ kt_override }}</small>
         {%- else -%}
-          <small class="copyright__content"
-            >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-          </small>
+          <small class="copyright__content">{{ 'custom_content.kt_footer.copyright' | t }}</small>
         {%- endif -%}
         <small class="copyright__content">{{ powered_by_link }}</small>
         {%- if section.settings.show_policy -%}
