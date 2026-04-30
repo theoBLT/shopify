@@ -5,10 +5,6 @@
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
- *
- * Newsletter section removed 2026-04-29 — the homepage's kt-newsletter
- * (cyan + Kinbear) is the canonical newsletter. The old separate
- * "newsletter" section duplicated it directly above the footer.
  * ------------------------------------------------------------
  */
 {
@@ -20,6 +16,7 @@
       "name": "Footer",
       "settings": {
         "color_scheme": "scheme-brand-charcoal",
+        "kt_copyright_override": "© 2026 Kinder Tresor — Made with care in Berlin.",
         "newsletter_enable": false,
         "newsletter_heading": "Join the Waitlist",
         "enable_follow_on_shop": true,
