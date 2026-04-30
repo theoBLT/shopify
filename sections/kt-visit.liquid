@@ -112,7 +112,7 @@
               </button>
               <noscript>
                 <a href="{{ map_block.settings.directions_url }}" target="_blank" rel="noopener noreferrer">
-                  Open map of {{ pin_label }} on Google Maps
+                  Open map of {{ pin_label | escape }} on Google Maps
                 </a>
               </noscript>
               <template>
@@ -125,7 +125,7 @@
         {%- endcase -%}
 
         {%- if pin_label != blank -%}
-          <div class="kt-visit__pin-label" aria-hidden="true">{{ pin_label }}</div>
+          <div class="kt-visit__pin-label" aria-hidden="true">{{ pin_label | escape }}</div>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -138,18 +138,8 @@
     {%- endif -%}
   {%- endfor -%}
   {%- if google_blocks > 0 -%}
-      <script>
-        document.querySelectorAll('.kt-visit__map-google[data-pending] [data-load-google]').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            var wrap = btn.closest('.kt-visit__map-google');
-            var tpl = wrap && wrap.querySelector('template');
-            if (!wrap || !tpl) return;
-            wrap.innerHTML = tpl.innerHTML;
-            wrap.removeAttribute('data-pending');
-          });
-        });
-      </script>
-    {%- endif -%}
+    <script src="{{ 'kt-visit.js' | asset_url }}" defer></script>
+  {%- endif -%}
 </section>
 
 {% schema %}

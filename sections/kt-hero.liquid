@@ -91,12 +91,12 @@
       {%- if section.blocks.size > 0 -%}
         <div class="kt-btn-row kt-hero__ctas">
           {%- for block in section.blocks -%}
-            {%- if block.type == 'cta_button' -%}
+            {%- if block.type == 'cta_button' and block.settings.label != blank and block.settings.link != blank -%}
               {%- liquid
                 assign btn_style = block.settings.style | default: 'coral'
                 assign btn_class = 'kt-button kt-button--' | append: btn_style
               -%}
-              <a href="{{ block.settings.link | default: '#' }}"
+              <a href="{{ block.settings.link }}"
                  class="{{ btn_class }}"
                  {{ block.shopify_attributes }}>
                 {{ block.settings.label }}

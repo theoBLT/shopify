@@ -64,10 +64,10 @@
     "kt_categories": {
       "type": "kt-categories",
       "blocks": {
-        "cat_apparel": { "type": "category_card", "settings": { "name": "Apparel", "bg_color": "yellow", "animation": "float" } },
-        "cat_toys":    { "type": "category_card", "settings": { "name": "Toys",    "bg_color": "pink",   "animation": "float_slow" } },
-        "cat_books":   { "type": "category_card", "settings": { "name": "Books",   "bg_color": "cyan",   "animation": "float" } },
-        "cat_gifts":   { "type": "category_card", "settings": { "name": "Gifts",   "bg_color": "green",  "animation": "float_slow" } }
+        "cat_apparel": { "type": "category_card", "settings": { "name": "Apparel", "bg_color": "yellow", "animation": "float",      "link": "shopify://collections/apparel" } },
+        "cat_toys":    { "type": "category_card", "settings": { "name": "Toys",    "bg_color": "pink",   "animation": "float_slow", "link": "shopify://collections/toys" } },
+        "cat_books":   { "type": "category_card", "settings": { "name": "Books",   "bg_color": "cyan",   "animation": "float",      "link": "shopify://collections/books" } },
+        "cat_gifts":   { "type": "category_card", "settings": { "name": "Gifts",   "bg_color": "green",  "animation": "float_slow", "link": "shopify://collections/gifts" } }
       },
       "block_order": ["cat_apparel", "cat_toys", "cat_books", "cat_gifts"],
       "settings": {

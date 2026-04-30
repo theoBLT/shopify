@@ -29,6 +29,14 @@
   {%- endif -%}
 {%- endstyle -%}
 
+{%- comment -%}
+  Stable anchor target — survives tone switches and renders even when
+  multiple instances of this section are on a page (still only one #kt-newsletter
+  remains valid: the first one in document order). Hero CTA, FAQ links, and
+  header Subscribe button all anchor to this.
+{%- endcomment -%}
+<a id="kt-newsletter" aria-hidden="true" tabindex="-1"></a>
+
 {%- if section.settings.tone == 'design' -%}
 {%- comment -%}
   Design tone — KT-branded cyan + Kinbear treatment.
@@ -51,7 +59,6 @@
   endfor
 -%}
 <section
-  id="kt-newsletter"
   class="kt-section kt-newsletter color-{{ sec.color_scheme }} gradient {% if kinbear_align == 'left' %}kt-newsletter--bear-left{% endif %}"
   aria-labelledby="kt-newsletter-title-{{ section.id }}">
   <div class="kt-container kt-newsletter__grid">

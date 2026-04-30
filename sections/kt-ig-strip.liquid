@@ -53,11 +53,7 @@
               assign tile_link = block.settings.link | default: sec.cta_link
               assign tile_aria = block.settings.aria_label | default: sec.title
             -%}
-            <a class="kt-ig__tile kt-bg-{{ bg }} lift"
-               href="{{ tile_link | default: '#' }}"
-               target="_blank" rel="noopener noreferrer"
-               aria-label="{{ tile_aria | escape }}"
-               {{ block.shopify_attributes }}>
+            {%- capture tile_inner -%}
               {%- if block.settings.image != blank or block.settings.inline_asset != blank -%}
                 {% render 'kt-image',
                     image: block.settings.image,
@@ -74,7 +70,18 @@
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
                 </svg>
               </span>
-            </a>
+            {%- endcapture -%}
+            {%- if tile_link != blank -%}
+              <a class="kt-ig__tile kt-bg-{{ bg }} lift"
+                 href="{{ tile_link }}"
+                 target="_blank" rel="noopener noreferrer"
+                 aria-label="{{ tile_aria | escape }}"
+                 {{ block.shopify_attributes }}>{{ tile_inner }}</a>
+            {%- else -%}
+              <div class="kt-ig__tile kt-bg-{{ bg }}"
+                   aria-label="{{ tile_aria | escape }}"
+                   {{ block.shopify_attributes }}>{{ tile_inner }}</div>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
