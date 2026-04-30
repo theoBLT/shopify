@@ -6,8 +6,7 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */
-{
+ */{
   "sections": {
     "kt_hero": {
       "type": "kt-hero",
@@ -74,7 +73,7 @@
           "type": "category_card",
           "settings": {
             "name": "Apparel",
-            "link": "shopify://collections/apparel",
+            "link": "",
             "bg_color": "yellow",
             "animation": "float"
           }
@@ -83,7 +82,7 @@
           "type": "category_card",
           "settings": {
             "name": "Toys",
-            "link": "shopify://collections/toys",
+            "link": "",
             "bg_color": "pink",
             "animation": "float_slow"
           }
@@ -92,7 +91,7 @@
           "type": "category_card",
           "settings": {
             "name": "Books",
-            "link": "shopify://collections/books",
+            "link": "",
             "bg_color": "cyan",
             "animation": "float"
           }
@@ -101,7 +100,7 @@
           "type": "category_card",
           "settings": {
             "name": "Gifts",
-            "link": "shopify://collections/gifts",
+            "link": "",
             "bg_color": "green",
             "animation": "float_slow"
           }
