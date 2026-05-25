@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "kt_hero": {
       "type": "kt-hero",
@@ -25,17 +26,17 @@
         "cta_primary"
       ],
       "settings": {
-        "eyebrow_text": "Opening · May 2026 · Schöneberg",
+        "eyebrow_text": "Kids concept store · Schöneberg",
         "title_line_1": "Curated treasures",
         "title_line_2": "for little ones.",
         "show_crayon_underline": true,
-        "subtitle": "<p>For parents who care about quality, creativity and design. Launching May 2026 in Schöneberg, Berlin.</p>",
-        "retail_note": "We're launching our physical retail store first. Online orders will follow when we're ready.",
+        "subtitle": "<p>For parents who care about quality, creativity and design. </p>",
+        "retail_note": "Our physical retail store is now open as of May 22, 2026!  Online orders will follow when we're ready.",
         "kinbear_alt": "Kinbear waving",
         "kinbear_animation": "wave",
         "halo_color": "#eaa4c8",
         "stamp_visible": true,
-        "stamp_label_top": "OPENING",
+        "stamp_label_top": "SINCE",
         "stamp_label_middle": "MAY",
         "stamp_label_bottom": "2026",
         "stamp_color": "#f5d748",
@@ -125,7 +126,7 @@
       "settings": {
         "eyebrow": "What we stand for",
         "heading": "We believe in the magic of childhood.",
-        "body": "<p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.</p><p>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor will open in May 2026. We're currently building for you a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>",
+        "body": "<p>We are a curated kids concept store focused on discovering timeless aesthetics, mindful design, and conscious pieces for little ones and their worlds.</p><p>Rooted in slow values and inspired by design, we partner with thoughtful creators and independent brands who cherish quality, creativity, and storytelling.</p><p>Based in Berlin, Kinder Trésor opened in May 2026. We're always building for parents a collection of thoughtful treasures, inviting inspiring brand partners to join us.</p>",
         "cta_label": "Let's Collaborate",
         "cta_link": "/pages/contact",
         "cta_arrow": true,
@@ -141,7 +142,7 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Be the first to discover our treasures.",
+            "heading": "Follow us for inspiration",
             "heading_size": "h0"
           }
         },
@@ -214,9 +215,9 @@
           "type": "info",
           "settings": {
             "label": "Hours",
-            "value_strong": "Tuesday — Saturday · 11:00 — 17:30",
+            "value_strong": "Tuesday — Friday · 10:00 — 18:00, Saturdays  · 10 — 16:00",
             "value_extra_lines": "",
-            "value_note": "Opening: May 2026"
+            "value_note": ""
           }
         }
       },
@@ -345,7 +346,7 @@
           "type": "qa",
           "settings": {
             "question": "When are you opening?",
-            "answer": "<p>May 2026, in the heart of Schöneberg, Berlin. <a href=\"#kt-newsletter\">Subscribe to our newsletter</a> and you'll be the first to know the exact date.</p>",
+            "answer": "<p>We're open, as of May 2026! Come say hi!</p>",
             "default_open": true
           }
         },
@@ -377,7 +378,7 @@
           "type": "qa",
           "settings": {
             "question": "Are you hiring?",
-            "answer": "<p>We will be at or around opening time, looking for sales associates. <a href=\"/pages/contact\">Send a note via the contact form</a>.</p>",
+            "answer": "<p>Not right now, our team is full. However, you can still send us a <a href=\"/pages/contact\">note via the contact form</a> for future consideration :) </p>",
             "default_open": false
           }
         }
