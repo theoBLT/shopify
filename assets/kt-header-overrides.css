@@ -69,7 +69,11 @@
   font: 600 12px/1 var(--kt-font-display, "National Park", system-ui, sans-serif);
   letter-spacing: 0.08em;
 }
-.kt-lang--header a {
+.kt-lang--header .kt-lang__form {
+  display: inline-flex;
+}
+.kt-lang--header a,
+.kt-lang--header button {
   border: none;
   background: transparent;
   cursor: pointer;
@@ -77,14 +81,18 @@
   border-radius: 999px;
   color: var(--kt-charcoal, #2d3436);
   text-decoration: none;
+  font: inherit;
+  letter-spacing: inherit;
   transition: background 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
               color 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.kt-lang--header a[aria-current="true"] {
+.kt-lang--header a[aria-current="true"],
+.kt-lang--header button[aria-current="true"] {
   background: var(--kt-charcoal, #2d3436);
   color: #fff;
 }
-.kt-lang--header a:focus-visible {
+.kt-lang--header a:focus-visible,
+.kt-lang--header button:focus-visible {
   outline: 2px solid var(--kt-charcoal);
   outline-offset: 2px;
 }
