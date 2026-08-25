@@ -288,13 +288,17 @@
                   {% if block.settings.show_on_desktop == false %} small-up-hide{% endif %}
                   {% if block.settings.show_on_mobile == false %} small-hide{% endif %}"
                   {{ block.shopify_attributes }}>
-                {%- for lang in localization.available_languages -%}
-                  <a href="{{ lang.root_url }}"
-                     hreflang="{{ lang.iso_code }}"
-                     {% if lang.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
-                    {{ lang.iso_code | upcase }}
-                  </a>
-                {%- endfor -%}
+                {%- form 'localization', id: 'HeaderLanguagePillForm', class: 'kt-lang__form' -%}
+                  {%- for lang in localization.available_languages -%}
+                    <button type="submit"
+                            name="locale_code"
+                            value="{{ lang.iso_code }}"
+                            lang="{{ lang.iso_code }}"
+                            {% if lang.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                      {{ lang.iso_code | upcase }}
+                    </button>
+                  {%- endfor -%}
+                {%- endform -%}
               </div>
             {%- endif -%}
           {%- when 'subscribe_cta' -%}
