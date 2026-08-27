@@ -309,3 +309,110 @@
   .kt-hero__sticker--bottom-left  { left: -6px; }
   .kt-hero__sticker--bottom-right { right: -6px; }
 }
+
+/* =============================================================================
+   Hero layout variants — how much room the photo gets.
+
+   The container is 1180px wide with 56px padding, so the default split leaves
+   the art column only ~473px. These variants trade text width, or escape the
+   container entirely, to give a landscape photograph the width it wants.
+   All three collapse to the same single-column stack on mobile.
+   ============================================================================= */
+
+/* ---- Bleed: the photo runs off the right edge of the viewport ---- */
+.kt-hero--bleed .kt-hero__grid {
+  /* Keep the ORIGINAL column ratio. The photo gains its width by escaping the
+     container to the right, not by squeezing the text — at the display size the
+     title uses, a narrower column breaks "treasures" onto two lines. */
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.kt-hero--bleed .kt-hero__art--photo {
+  padding: 0;
+  align-items: stretch;
+  /* Cancel the container's right padding AND its centring margin, so the
+     panel reaches the viewport edge. .kt-hero has overflow:hidden, so the
+     scrollbar-width discrepancy in 100vw is clipped rather than scrolling. */
+  margin-right: calc(-56px - max(0px, (100vw - 1180px) / 2));
+}
+
+.kt-hero--bleed .kt-hero__photo {
+  max-width: none;
+  width: 100%;
+  display: flex;
+  transform: none; /* a tilt reads as a mistake on a panel that bleeds off-screen */
+}
+
+.kt-hero--bleed .kt-hero__photo-inner {
+  width: 100%;
+  /* Hold a landscape shape. Letting the panel stretch to the text column's
+     height makes it near-square, and object-fit:cover then crops a 3:2
+     interior shot down to its middle third — losing exactly the sweep that
+     makes the photo worth featuring. */
+  aspect-ratio: 4 / 3;
+  border-radius: var(--kt-radius-lg) 0 0 var(--kt-radius-lg);
+  border-right: 0;
+}
+
+.kt-hero--bleed .kt-hero__photo-caption { transform: none; text-align: left; }
+
+.kt-hero--bleed .kt-hero__art--photo .kt-hero__halo {
+  width: 240px;
+  height: 240px;
+  bottom: -40px;
+  left: -60px;
+}
+
+/* ---- Band: one wide photo under the text ---- */
+.kt-hero--band .kt-hero__grid {
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+  padding-bottom: 64px;
+}
+
+.kt-hero--band .kt-hero__text { max-width: 760px; }
+
+.kt-hero--band .kt-hero__art--photo {
+  padding: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+.kt-hero--band .kt-hero__photo {
+  max-width: none;
+  width: 100%;
+  transform: none; /* a full-width tilt would clip against .kt-hero's overflow */
+}
+
+.kt-hero--band .kt-hero__photo-inner {
+  aspect-ratio: 2.6 / 1;
+}
+
+.kt-hero--band .kt-hero__photo-caption { transform: none; }
+
+.kt-hero--band .kt-hero__art--photo .kt-hero__halo {
+  width: 200px;
+  height: 200px;
+  bottom: -30px;
+  left: -40px;
+}
+
+/* ---- Mobile: every variant becomes the same simple stack ---- */
+@media (max-width: 899px) {
+  .kt-hero--bleed .kt-hero__grid,
+  .kt-hero--band .kt-hero__grid {
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  .kt-hero--bleed .kt-hero__art--photo { margin-right: 0; }
+  .kt-hero--bleed .kt-hero__photo-inner {
+    min-height: 0;
+    aspect-ratio: var(--kt-hero-photo-ratio, 3 / 2);
+    border-radius: var(--kt-radius-lg);
+    border-right: 1.5px solid var(--kt-charcoal);
+  }
+  .kt-hero--band .kt-hero__photo-inner { aspect-ratio: var(--kt-hero-photo-ratio, 3 / 2); }
+}

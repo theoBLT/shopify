@@ -30,6 +30,7 @@
   if sec.hero_image != blank
     assign has_photo = true
   endif
+  assign hero_layout = sec.hero_layout | default: 'band'
   assign photo_ratio = sec.hero_image_aspect | default: '3 / 2'
   assign photo_focal = sec.hero_image.presentation.focal_point | default: 'center'
   assign sticker_pos = sec.bear_sticker_position | default: 'bottom-left'
@@ -58,7 +59,7 @@
 
 <section
   id="kt-hero-{{ section.id }}"
-  class="kt-hero color-{{ sec.color_scheme }} gradient"
+  class="kt-hero kt-hero--{{ hero_layout }} color-{{ sec.color_scheme }} gradient"
   aria-labelledby="kt-hero-title-{{ section.id }}">
   <div class="kt-container kt-hero__grid">
     {%- comment -%} Decorative dots, top-left {%- endcomment -%}
@@ -262,6 +263,18 @@
       "id": "hero_image",
       "label": "Hero photo",
       "info": "A photograph of the store. When set, it replaces the Kinbear artwork and Kinbear becomes a small sticker over the frame. Leave empty to keep the illustrated hero."
+    },
+    {
+      "type": "select",
+      "id": "hero_layout",
+      "label": "Hero layout",
+      "info": "How much room the photo gets. Only affects the hero when a store photo is set.",
+      "options": [
+        { "value": "split", "label": "Split - photo beside the text" },
+        { "value": "bleed", "label": "Bleed - photo runs off the right edge" },
+        { "value": "band",  "label": "Band - wide photo under the text" }
+      ],
+      "default": "band"
     },
     {
       "type": "text",
