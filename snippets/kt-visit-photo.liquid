@@ -1,0 +1,28 @@
+{%- comment -%}
+  KT Visit — storefront photo.
+
+  Rendered inside the Visit section's right-hand column, above or below the map
+  depending on the "Photo position" setting. Rendered at its natural aspect
+  ratio (no crop) on purpose: the shopfront is a wide facade and cropping the
+  sides would cut off the very windows that make it recognisable from the
+  pavement.
+
+  Parameters:
+    sec — the kt-visit section.settings object.
+{%- endcomment -%}
+
+<figure class="kt-visit__photo">
+  <div class="kt-visit__photo-inner">
+    {% render 'kt-image',
+        image: sec.storefront_image,
+        class: 'kt-visit__photo-img',
+        alt: sec.storefront_alt,
+        width: 900,
+        height: 600,
+        loading: 'lazy',
+        sizes: '(min-width: 750px) 56vw, 92vw' %}
+  </div>
+  {%- if sec.storefront_caption != blank -%}
+    <figcaption class="kt-visit__photo-caption">{{ sec.storefront_caption }}</figcaption>
+  {%- endif -%}
+</figure>

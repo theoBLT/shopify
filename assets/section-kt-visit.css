@@ -141,3 +141,64 @@
   pointer-events: none;
   z-index: 2;
 }
+
+/* =============================================================================
+   Storefront photo — shares the right-hand column with the map.
+
+   The column is always present so the map keeps its old full-height behaviour
+   when no photo is set; the --with-photo modifier is what shortens the map to
+   make room. Photo renders at its natural aspect ratio (see kt-visit-photo).
+   ============================================================================= */
+
+.kt-visit__col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.kt-visit__col .kt-visit__map { flex: 1 1 auto; }
+
+.kt-visit__col--with-photo .kt-visit__map {
+  flex: 0 0 auto;
+  min-height: 240px;
+}
+.kt-visit__col--with-photo .kt-visit__map-iframe,
+.kt-visit__col--with-photo .kt-visit__map-static {
+  min-height: 240px;
+}
+
+.kt-visit__photo {
+  margin: 0;
+  position: relative;
+}
+
+.kt-visit__photo-inner {
+  border: 1.5px solid var(--kt-charcoal);
+  border-radius: var(--kt-radius-lg);
+  overflow: hidden;
+  background: var(--kt-cream);
+  box-shadow: 0 14px 30px rgba(45, 52, 54, 0.08);
+  line-height: 0;
+}
+
+.kt-visit__photo-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.kt-visit__photo-caption {
+  font: italic 500 12.5px/1.4 var(--kt-font-body);
+  color: var(--kt-fg-muted);
+  margin-top: 12px;
+}
+
+@media (max-width: 749px) {
+  .kt-visit__col { gap: 16px; }
+  .kt-visit__col--with-photo .kt-visit__map,
+  .kt-visit__col--with-photo .kt-visit__map-iframe,
+  .kt-visit__col--with-photo .kt-visit__map-static {
+    min-height: 220px;
+  }
+}

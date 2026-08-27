@@ -21,6 +21,25 @@
   elsif anim == 'float'
     assign bear_class = 'kt-hero__bear kt-float'
   endif
+
+  comment
+    Photo mode: when a store photo is picked, it becomes the hero artwork and
+    Kinbear demotes to a sticker over the frame. Blank photo = original layout.
+  endcomment
+  assign has_photo = false
+  if sec.hero_image != blank
+    assign has_photo = true
+  endif
+  assign photo_ratio = sec.hero_image_aspect | default: '3 / 2'
+  assign photo_focal = sec.hero_image.presentation.focal_point | default: 'center'
+  assign sticker_pos = sec.bear_sticker_position | default: 'bottom-left'
+
+  assign sticker_class = 'kt-hero__sticker-img'
+  if anim == 'wave'
+    assign sticker_class = 'kt-hero__sticker-img kt-wave'
+  elsif anim == 'float'
+    assign sticker_class = 'kt-hero__sticker-img kt-float'
+  endif
 -%}
 
 {%- style -%}
@@ -28,6 +47,10 @@
     --kt-hero-halo: {{ halo }};
     --kt-hero-stamp-bg: {{ stamp_bg }};
     --kt-hero-crayon: {{ crayon }};
+    --kt-hero-photo-ratio: {{ photo_ratio }};
+    --kt-hero-photo-focal: {{ photo_focal }};
+    --kt-hero-photo-rotate: {{ sec.hero_image_rotation | default: -1.5 }}deg;
+    --kt-hero-sticker-size: {{ sec.bear_sticker_size | default: 130 }}px;
     padding-top: {{ sec.padding_top | default: 0 }}px;
     padding-bottom: {{ sec.padding_bottom | default: 0 }}px;
   }
@@ -119,7 +142,7 @@
       {%- endif -%}
     </div>
 
-    <div class="kt-hero__art">
+    <div class="kt-hero__art{% if has_photo %} kt-hero__art--photo{% endif %}">
       <div class="kt-hero__halo" aria-hidden="true"></div>
 
       {%- if sec.stamp_visible -%}
@@ -138,14 +161,45 @@
         </div>
       {%- endif -%}
 
-      {% render 'kt-image',
-          image: sec.kinbear_image,
-          inline_asset_fallback: 'kinbear-blue-real.svg',
-          class: bear_class,
-          alt: sec.kinbear_alt,
-          loading: 'eager',
-          width: 420,
-          height: 420 %}
+      {%- if has_photo -%}
+        <figure class="kt-hero__photo">
+          <div class="kt-hero__photo-inner">
+            {% render 'kt-image',
+                image: sec.hero_image,
+                class: 'kt-hero__photo-img',
+                alt: sec.hero_image_alt,
+                width: 900,
+                height: 600,
+                loading: 'eager',
+                sizes: '(min-width: 900px) 46vw, 92vw' %}
+          </div>
+          {%- if sec.hero_image_caption != blank -%}
+            <figcaption class="kt-hero__photo-caption">{{ sec.hero_image_caption }}</figcaption>
+          {%- endif -%}
+        </figure>
+
+        {%- if sec.bear_sticker_visible -%}
+          <div class="kt-hero__sticker kt-hero__sticker--{{ sticker_pos }}" aria-hidden="true">
+            {% render 'kt-image',
+                image: sec.kinbear_image,
+                inline_asset_fallback: 'kinbear-blue-real.svg',
+                class: sticker_class,
+                alt: '',
+                width: 200,
+                height: 200,
+                loading: 'lazy' %}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        {% render 'kt-image',
+            image: sec.kinbear_image,
+            inline_asset_fallback: 'kinbear-blue-real.svg',
+            class: bear_class,
+            alt: sec.kinbear_alt,
+            loading: 'eager',
+            width: 420,
+            height: 420 %}
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -201,7 +255,81 @@
     },
     {
       "type": "header",
+      "content": "Store photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero photo",
+      "info": "A photograph of the store. When set, it replaces the Kinbear artwork and Kinbear becomes a small sticker over the frame. Leave empty to keep the illustrated hero."
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero photo alt text",
+      "info": "Describe the photo for screen readers and search engines.",
+      "default": "Inside the Kinder Tresor store in Berlin Schoeneberg"
+    },
+    {
+      "type": "select",
+      "id": "hero_image_aspect",
+      "label": "Hero photo shape",
+      "info": "The photo is cropped to this shape. Set a focal point on the image in Shopify Files to control which part stays in frame.",
+      "options": [
+        { "value": "3 / 2", "label": "Landscape (3:2)" },
+        { "value": "4 / 3", "label": "Landscape, softer (4:3)" },
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 5", "label": "Portrait (4:5)" }
+      ],
+      "default": "3 / 2"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_caption",
+      "label": "Hero photo caption",
+      "info": "Optional small italic line under the photo. Leave empty for none."
+    },
+    {
+      "type": "range",
+      "id": "hero_image_rotation",
+      "label": "Hero photo tilt",
+      "min": -4,
+      "max": 4,
+      "step": 0.5,
+      "default": -1.5,
+      "unit": "deg"
+    },
+    {
+      "type": "header",
       "content": "Kinbear"
+    },
+    {
+      "type": "checkbox",
+      "id": "bear_sticker_visible",
+      "label": "Show Kinbear sticker over the photo",
+      "info": "Only applies when a hero photo is set.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "bear_sticker_position",
+      "label": "Kinbear sticker position",
+      "options": [
+        { "value": "bottom-left",  "label": "Bottom left" },
+        { "value": "bottom-right", "label": "Bottom right" },
+        { "value": "top-left",     "label": "Top left" }
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "range",
+      "id": "bear_sticker_size",
+      "label": "Kinbear sticker size",
+      "min": 70,
+      "max": 220,
+      "step": 5,
+      "default": 130,
+      "unit": "px"
     },
     {
       "type": "image_picker",

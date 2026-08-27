@@ -18,6 +18,15 @@
     endif
   endfor
 
+  comment
+    Storefront photo: shares the right-hand column with the map so a visitor
+    sees the door they are looking for next to where it is. Blank = map only.
+  endcomment
+  assign has_photo = false
+  if sec.storefront_image != blank
+    assign has_photo = true
+  endif
+  assign photo_position = sec.storefront_position | default: 'above_map'
 -%}
 
 <section
@@ -68,7 +77,12 @@
       {%- endif -%}
     </div>
 
-    {%- if map_block != blank -%}
+    <div class="kt-visit__col{% if has_photo %} kt-visit__col--with-photo{% endif %}">
+      {%- if has_photo and photo_position == 'above_map' -%}
+        {% render 'kt-visit-photo', sec: sec %}
+      {%- endif -%}
+
+      {%- if map_block != blank -%}
       <div class="kt-visit__map" {{ map_block.shopify_attributes }}>
         {%- liquid
           assign provider = map_block.settings.provider | default: 'osm'
@@ -129,7 +143,12 @@
           <div class="kt-visit__pin-label" aria-hidden="true">{{ pin_label | escape }}</div>
         {%- endif -%}
       </div>
-    {%- endif -%}
+      {%- endif -%}
+
+      {%- if has_photo and photo_position == 'below_map' -%}
+        {% render 'kt-visit-photo', sec: sec %}
+      {%- endif -%}
+    </div>
   </div>
 
   {%- assign google_blocks = 0 -%}
@@ -171,6 +190,39 @@
       "id": "subtitle",
       "label": "Subtitle",
       "default": "<p>Tucked into a quiet corner of Schöneberg — five minutes from Bayerischer Platz and the Akazienstraße.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Storefront photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "storefront_image",
+      "label": "Storefront photo",
+      "info": "A photo of the shopfront, shown next to the map so visitors recognise the door. Leave empty to show the map on its own."
+    },
+    {
+      "type": "text",
+      "id": "storefront_alt",
+      "label": "Storefront photo alt text",
+      "default": "The Kinder Tresor shopfront on Belziger Strasse in Berlin"
+    },
+    {
+      "type": "text",
+      "id": "storefront_caption",
+      "label": "Storefront photo caption",
+      "info": "Optional line under the photo. A landmark works well.",
+      "default": "Look for the yellow awning and the blue bench."
+    },
+    {
+      "type": "select",
+      "id": "storefront_position",
+      "label": "Photo position",
+      "options": [
+        { "value": "above_map", "label": "Above the map" },
+        { "value": "below_map", "label": "Below the map" }
+      ],
+      "default": "above_map"
     },
     {
       "type": "header",
