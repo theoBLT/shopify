@@ -33,6 +33,7 @@
         "subtitle": "<p>For parents who care about quality, creativity and design. </p>",
         "retail_note": "Our physical retail store is now open as of May 22, 2026!  Online orders will follow when we're ready.",
         "hero_image": "shopify://shop_images/kinder-tresor-dina-purnasari-mit-kindern.jpg",
+        "hero_layout": "bleed",
         "hero_image_alt": "Inside the Kinder Tresor store in Berlin Schoeneberg",
         "hero_image_aspect": "3 / 2",
         "hero_image_caption": "",
