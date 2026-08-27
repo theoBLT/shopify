@@ -209,3 +209,103 @@
   line-height: 1;
   margin-top: 1px;
 }
+
+/* =============================================================================
+   Photo mode — a real store photograph as the hero artwork.
+
+   Active only when the "Hero photo" setting is filled. Kinbear survives as a
+   sticker over the frame corner and the halo shrinks into an offset blob that
+   peeks out behind the photo, so the illustrated brand character stays present
+   while the photo does the persuading. With no photo picked, none of these
+   rules match and the original Kinbear-on-halo layout above is untouched.
+   ============================================================================= */
+
+.kt-hero__art--photo {
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 20px 28px 28px;
+}
+
+.kt-hero__art--photo .kt-hero__halo {
+  /* Dawn's base.css resets `div:empty { display: none }`, which silently hides
+     the halo (it is an empty decorative div). Re-assert it here — this selector
+     out-specifies `div:empty`. Scoped to photo mode on purpose so the existing
+     illustrated hero keeps rendering exactly as it does today. */
+  display: block;
+  inset: auto auto 0 0;
+  margin: 0;
+  width: 300px;
+  height: 300px;
+  max-width: 68%;
+  max-height: 68%;
+}
+
+.kt-hero__photo {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  width: 100%;
+  max-width: 580px;
+  transform: rotate(var(--kt-hero-photo-rotate, -1.5deg));
+}
+
+.kt-hero__photo-inner {
+  position: relative;
+  border: 1.5px solid var(--kt-charcoal);
+  border-radius: var(--kt-radius-lg);
+  overflow: hidden;
+  background: var(--kt-cream);
+  box-shadow: 0 14px 30px rgba(45, 52, 54, 0.1);
+  aspect-ratio: var(--kt-hero-photo-ratio, 3 / 2);
+}
+
+.kt-hero__photo-inner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  /* Honours the focal point set on the image in Shopify Files. */
+  object-position: var(--kt-hero-photo-focal, center);
+}
+
+.kt-hero__photo-caption {
+  font: italic 500 12px/1.4 var(--kt-font-body);
+  color: var(--kt-fg-muted);
+  text-align: center;
+  margin-top: 16px;
+  /* Counter-rotate so the caption reads level under a tilted frame. */
+  transform: rotate(calc(var(--kt-hero-photo-rotate, -1.5deg) * -1));
+}
+
+/* ---- Kinbear sticker ---- */
+.kt-hero__sticker {
+  position: absolute;
+  z-index: 3;
+  width: var(--kt-hero-sticker-size, 130px);
+  pointer-events: none;
+  filter: drop-shadow(0 6px 14px rgba(45, 52, 54, 0.2));
+}
+
+.kt-hero__sticker-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.kt-hero__sticker-img.kt-wave { transform-origin: bottom center; }
+
+.kt-hero__sticker--bottom-left  { left: 0;  bottom: 0; }
+.kt-hero__sticker--bottom-right { right: 0; bottom: 0; }
+.kt-hero__sticker--top-left     { left: 0;  top: 0; }
+
+@media (max-width: 899px) {
+  .kt-hero__art--photo { padding: 14px 20px 20px; }
+  .kt-hero__photo { max-width: 480px; margin: 0 auto; }
+  .kt-hero__sticker { width: calc(var(--kt-hero-sticker-size, 130px) * 0.72); }
+}
+
+@media (max-width: 749px) {
+  /* The stamp and the sticker both crowd a narrow frame — pull the sticker in. */
+  .kt-hero__sticker--bottom-left  { left: -6px; }
+  .kt-hero__sticker--bottom-right { right: -6px; }
+}
