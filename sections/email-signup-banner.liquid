@@ -133,12 +133,7 @@
     </div>
 
     <div class="kt-newsletter__art" style="--kt-newsletter-bear-size: {{ kinbear_size }}%;">
-      {% render 'kt-image',
-          image: sec.kinbear_image,
-          inline_asset_fallback: sec.kinbear_inline_asset | default: 'kinbear-cream.svg',
-          class: 'kt-newsletter__bear kt-float-slow',
-          alt: sec.kinbear_alt,
-          loading: 'lazy' %}
+      {% render 'kt-image', image: sec.kinbear_image, inline_asset_fallback: sec.kinbear_inline_asset, default: 'kinbear-cream.svg', class: 'kt-newsletter__bear kt-float-slow', alt: sec.kinbear_alt, loading: 'lazy' %}
     </div>
   </div>
 </section>
@@ -317,7 +312,7 @@
       "type": "text",
       "id": "hint",
       "label": "Helper hint (under form)",
-      "default": ""
+      "default": "Early subscribers get the first invite to our private opening night."
     },
     {
       "type": "image_picker",
@@ -611,14 +606,14 @@
         {
           "type": "heading",
           "settings": {
-            "heading": "Follow us for inspiration",
+            "heading": "Be the first to discover our treasures.",
             "heading_size": "h0"
           }
         },
         {
           "type": "paragraph",
           "settings": {
-            "text": "<p>A short note when a new brand lands or a collection arrives in store. Quiet, infrequent, and only the news worth sharing.</p>"
+            "text": "<p>A monthly note — opening news, maker stories and the occasional small joy. No spam, ever.</p>"
           }
         },
         {
@@ -637,3 +632,21 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'kt-image',
+              image: sec.kinbear_image,
+              inline_asset_fallback: sec.kinbear_inline_asset | default: 'kinbear-cream.svg',
+              class: 'kt-newsletter__bear kt-float-slow',
+              alt: sec.kinbear_alt,
+              loading: 'lazy' %}
+  to: "{% render 'kt-image', image: sec.kinbear_image, inline_asset_fallback: sec.kinbear_inline_asset,
+    default: 'kinbear-cream.svg', class: 'kt-newsletter__bear kt-float-slow', alt:
+    sec.kinbear_alt, loading: 'lazy' %}"
+  position: 5780..5991
+{% endcomment %}
